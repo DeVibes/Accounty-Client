@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+
+import Transactions from '../Components/Transactions';
 
 const Wallet = () => {
   return (
-    <div>Wallet</div>
-  )
-}
+    <div>
+      <Transactions/>
+    </div>
+  );
+};
 
-export default Wallet
+export default Wallet;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+
 import { AppPages } from '../Data/pages';
 
 const footerClasses = `absolute bottom-0 w-full bg-[#24283b] 
