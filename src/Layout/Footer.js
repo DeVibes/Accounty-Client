@@ -1,12 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { IoAddOutline as PlusIcon } from 'react-icons/io5';
 
 import { AppPages } from '../Data/pages';
 
 const footerClasses = `absolute bottom-0 w-full bg-[#24283b] 
     rounded-xl p-4 flex justify-around`;
 
-const Footer = () => {
+const Footer = ({ handlePlusClick }) => {
   return (
     <footer className={footerClasses}>
         {AppPages.map(pageData => (
@@ -16,6 +17,12 @@ const Footer = () => {
                 key={pageData.value} 
             />
         ))}
+        <button className={`bg-[#7aa2f7] rounded-lg absolute -top-5
+            transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125`}
+            onClick={handlePlusClick}
+        >
+            <PlusIcon size={40}/>
+        </button>
     </footer>
   );
 };
@@ -34,7 +41,8 @@ const FooterIcon = ({ props, size, onItemClick }) => {
                 return (
                     <Icon
                         size={size}
-                        className={`hover:fill-[#7aa2f7] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125 ${iconClasses}`}
+                        className={`hover:fill-[#7aa2f7] transition ease-in-out delay-150 
+                        hover:-translate-y-1 hover:scale-125 ${iconClasses}`}
                     />
                 );
             }}
