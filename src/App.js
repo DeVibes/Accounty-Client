@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Router from './Router';
 import './App.css';
+import { ReactQuery } from './reactQuery';
 
 const App = () => {
 	return (
-		<DesktopViewRestrictor>
-			<Router/>
-		</DesktopViewRestrictor>
+		<ReactQuery>
+			<DesktopViewRestrictor>
+				<Router/>
+			</DesktopViewRestrictor>
+		</ReactQuery>
 	);
 };
 

@@ -16,7 +16,6 @@ const Popup = ({ children, isVisible, handleClose }) => {
             > */}
                 <button className={`absolute -top-4 -right-4 bg-[${Color.RED}] rounded-lg p-2
                 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125`}
-                // <button className={`absolute -top-4 -right-4 bg-[${Color.RED}] rounded-lg p-2`}
                   onClick={handleClose}
                 >
                   <CloseIcon size={25}/>

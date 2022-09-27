@@ -3,38 +3,41 @@ import { useForm } from "react-hook-form";
 import { CategoriesArray } from '../Data/categories';
 import { PaymentTypesArray } from '../Data/paymentTypes';
 
-const TransactionForm = () => {
-	const { register, handleSubmit, watch, formState: { errors } } = useForm();
-	const onSubmit = data => console.log(data);
-
+const TransactionForm = ({ actions, isLoading }) => {
+	const { register, handleSubmit, formState: { errors } } = useForm();
+	const onSubmit = handleSubmit(actions.postTransaction);
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className={`grid grid-rows-3 grid-cols-2
+		<form onSubmit={onSubmit} 
+			className={`grid grid-rows-3 grid-cols-2
 			gap-4`}
 		>
 			<div className="col-span-2">
-				<Input name="description" register={register} required/>
+				<Input name="description" register={register} required label="Description"/>
 				{errors.description && <ErrorMsg msg="Please enter some description"/>}
 			</div>
 			<div>
-				<Input name="store" register={register}/>
+				<Input name="store" register={register} label="Store"/>
 			</div>
 			<div>
-				<SelectInput name="category" register={register} options={CategoriesArray}/>
+				<SelectInput name="categoryId" register={register} options={CategoriesArray} label="Category"/>
 			</div>
 			<div>
-				<Input name="price" register={register} type="number" required/>
+				<Input name="price" register={register} type="number" required label="Price"/>
 				{errors.price && <ErrorMsg msg="Please enter price"/>}
 			</div>
 			<div>
-				<SelectInput name="payment" register={register} options={PaymentTypesArray}/>
+				<SelectInput name="paymentTypeId" register={register} options={PaymentTypesArray} label="Payment"/>
 			</div>
 			<div>
-				<Input name="date" type='datetime-local' register={register} required/>
+				<Input name="date" type='datetime-local' register={register} required label="Date"/>
 				{errors.date && <ErrorMsg msg="Please enter date"/>}
 			</div>
 			<div className="col-span-2 mt-2">
-				<input type="submit" className={`w-full text-white bg-[#7aa2f7] p-2 rounded-lg cursor-pointer`}
-				/>
+				{isLoading ? (
+					<>LOADING</>
+				) : (
+					<input type="submit" className={`w-full text-white bg-[#7aa2f7] p-2 rounded-lg cursor-pointer`}/>
+				)}
 			</div>
 		</form>
 	);
@@ -42,8 +45,8 @@ const TransactionForm = () => {
 
 export default TransactionForm;
 
-const Input = ({ name, register, type = "text", required }) => {
-	const inputTitle = name.toUpperCase();
+const Input = ({ name, register, type = "text", required, label }) => {
+	const inputTitle = label.toUpperCase();
 	return (
 		<>
 			<label htmlFor={name} className='block mb-2 text-sm font-medium text-slate-400'>
@@ -58,8 +61,8 @@ const Input = ({ name, register, type = "text", required }) => {
 	);
 };
 
-const SelectInput = ({ name, register, options }) => {
-	const selectTitle = name.toUpperCase();
+const SelectInput = ({ name, register, options, label }) => {
+	const selectTitle = label.toUpperCase();
 	return (
 		<>
 			<label htmlFor={name} className="block mb-2 text-sm font-medium text-gray-400">

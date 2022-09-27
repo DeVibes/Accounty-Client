@@ -4,8 +4,8 @@ import Transactions from '../Components/Transactions';
 
 const Wallet = () => {
   return (
-    <div>
-      <Transactions/>
+    <div className='h-full'>
+      <Transactions />
     </div>
   );
 };

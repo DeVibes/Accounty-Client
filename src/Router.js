@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppPages } from './Data/pages';
 import Layout from './Layout/Layout';
 import Dashboard from './Pages/Dashboard';
-import Wallet from './Pages/Wallet';
+import Wallet from './Pages/Wallet.page';
 
 const Router = () => {
   return (

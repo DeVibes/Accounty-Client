@@ -1,22 +1,15 @@
 import React from 'react';
-import { CategoriesMap } from '../Data/categories';
+import { CategoriesMap, Category } from '../Data/categories';
 import { PaymentTypesMap } from '../Data/paymentTypes';
-import { getTransactions } from '../Services/transactions.service';
+import { useFetchTransactions } from '../hooks/transactions.hook';
 import Badge from '../Shared/Badge';
 
 const Transactions = () => {
-    const transactions = getTransactions();
+    const { transactions, status } = useFetchTransactions();
     return (
-        <section className='container p-4'>
-            <TransactionsHeader/>
-            {transactions.length > 0 && transactions.map(tr => (
-                <div key={tr.id} className='my-4'>
-                    {tr.isLast && (
-                        <TransactionItemHeader date={tr.date} price={tr.dailySum}/>
-                    )}
-                    <TransactionItem data={tr}/>
-                </div>
-            ))}
+        <section className='container p-4 h-full flex flex-col pr-0'>
+            {/* <TransactionsHeader/> */}
+            <TransactionsList transactions={transactions}/>
         </section>
     );
 };
@@ -28,8 +21,23 @@ const TransactionsHeader = () => {
         <div className='mb-3'>
             <span className='text-slate-400'>Transactions</span>
         </div>
-    )
-}
+    );
+};
+
+const TransactionsList = ({ transactions }) => {
+    return (
+        <div className='overflow-auto pr-4'>
+            {transactions.length > 0 && transactions.map(tr => (
+                <div key={tr.id} className='my-4'>
+                    {tr.isLast && (
+                        <TransactionItemHeader date={tr.date} price={tr.dailySum}/>
+                    )}
+                    <TransactionItem data={tr}/>
+                </div>
+            ))}
+        </div>
+    );
+};
 
 const TransactionItemHeader = ({ date, price }) => {
     const badgeColorStyle = price < 0 ? "bg-[#8c4351] text-slate-400" : 
@@ -43,9 +51,8 @@ const TransactionItemHeader = ({ date, price }) => {
 };
 
 const TransactionItem = ({ data }) => {
-    const Icon = CategoriesMap.get(data.categoryId).icon;
+    const Icon = CategoriesMap.get(data.categoryId)?.icon ?? Category.Unknown.icon;
     const paymentTypeName = PaymentTypesMap.get(data.paymentTypeId).name;
-    const priceColor = `text-[#${data.price < 0 ? "8c4351" : "9ece6a"}]`;
     return (
         <div className='grid grid-rows-2 grid-cols-6'>
             <span className='row-start-1 row-span-2 col-span-1'>
@@ -53,9 +60,7 @@ const TransactionItem = ({ data }) => {
             </span>
             <div className='row-start-1 col-start-2 col-span-5 flex justify-between'>
                 <span className='text-slate-300'>{data.description}</span>
-                {/* <span className={`text-[${priceColor}]`} */}
-                <span className={priceColor}
-                >
+                <span className={data.price > 0 ? 'text-[#9ece6a]' : 'text-[#8c4351]'}>
                     {data.price}₪
                 </span>
             </div>
@@ -64,5 +69,5 @@ const TransactionItem = ({ data }) => {
                 <span className='text-slate-500'>{paymentTypeName}</span>
             </div>
         </div>
-    )
-}
+    );
+};

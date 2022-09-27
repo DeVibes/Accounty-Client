@@ -4,8 +4,8 @@ import { IoAddOutline as PlusIcon } from 'react-icons/io5';
 
 import { AppPages } from '../Data/pages';
 
-const footerClasses = `absolute bottom-0 w-full bg-[#24283b] 
-    rounded-xl p-4 flex justify-around`;
+const footerClasses = `w-full bg-[#24283b] 
+    rounded-t-xl p-4 flex justify-around relative`;
 
 const Footer = ({ handlePlusClick }) => {
   return (
