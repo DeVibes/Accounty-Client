@@ -16,3 +16,12 @@ export const postTransactionRequest = async transaction => {
     const response = await fetch(apiRouteLocal + "/transactions", requestOptions);
     log(response);
 };
+
+export const deleteTransactionRequest = async transactionId => {
+    const requestOptions = {
+        method: "DELETE",
+        headers: { 'Content-Type': 'application/json' }
+    };
+    const response = await fetch(apiRouteLocal + `/transactions/${transactionId}`, requestOptions);
+    log(response);
+};

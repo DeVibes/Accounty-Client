@@ -27,6 +27,7 @@ const sortTransactionsByDate = (transactions, isDesc = false) => {
 const sliceTimeFromDateString = dateString => dateString?.slice(0, 10);
 
 const calculateDailySpent = transactions => {
+    // transactions = transactions.filter(tr => tr.catId === )
     transactions.reverse();
     let dailySum = 0;
     const modifiedTransactions = transactions.map((tr, index) => {

@@ -1,15 +1,24 @@
 import React from 'react';
 import { CategoriesMap, Category } from '../Data/categories';
 import { PaymentTypesMap } from '../Data/paymentTypes';
+import { FabState, useSelectedTransaction } from '../hooks/context.hook';
 import { useFetchTransactions } from '../hooks/transactions.hook';
 import Badge from '../Shared/Badge';
 
 const Transactions = () => {
-    const { transactions, status } = useFetchTransactions();
+    const { transactions } = useFetchTransactions();
+    const { states, setters } = useSelectedTransaction();
+    const handleTransactionClick = selectedTid => {
+        setters.setSelectedTransaction(selectedTid);
+        setters.setFabState(selectedTid === null ? FabState.NOT_SELECTED : FabState.DELETE);
+    };
     return (
         <section className='container p-4 h-full flex flex-col pr-0'>
             {/* <TransactionsHeader/> */}
-            <TransactionsList transactions={transactions}/>
+            <TransactionsList transactions={transactions} 
+                onTransactionClick={handleTransactionClick}
+                selectedTransaction={states.selectedTransaction}
+            />
         </section>
     );
 };
@@ -24,15 +33,17 @@ const TransactionsHeader = () => {
     );
 };
 
-const TransactionsList = ({ transactions }) => {
+const TransactionsList = ({ transactions, selectedTransaction, onTransactionClick }) => {
     return (
         <div className='overflow-auto pr-4'>
             {transactions.length > 0 && transactions.map(tr => (
-                <div key={tr.id} className='my-4'>
+                <div key={tr.id}>
                     {tr.isLast && (
                         <TransactionItemHeader date={tr.date} price={tr.dailySum}/>
                     )}
-                    <TransactionItem data={tr}/>
+                    <TransactionItem data={tr} handleClick={onTransactionClick}
+                        isSelected={selectedTransaction === tr.id}
+                    />
                 </div>
             ))}
         </div>
@@ -50,11 +61,14 @@ const TransactionItemHeader = ({ date, price }) => {
     );
 };
 
-const TransactionItem = ({ data }) => {
+const TransactionItem = ({ data, handleClick, isSelected }) => {
     const Icon = CategoriesMap.get(data.categoryId)?.icon ?? Category.Unknown.icon;
     const paymentTypeName = PaymentTypesMap.get(data.paymentTypeId).name;
     return (
-        <div className='grid grid-rows-2 grid-cols-6'>
+        <div className={`grid grid-rows-2 grid-cols-6 p-2 rounded-lg 
+         ${isSelected && "bg-slate-700"}`}
+            onClick={() => handleClick(isSelected ? null : data.id)}
+        >
             <span className='row-start-1 row-span-2 col-span-1'>
                 <Icon size={50} color="white"/>
             </span>

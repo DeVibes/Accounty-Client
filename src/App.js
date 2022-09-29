@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import Router from './Router';
 import './App.css';
 import { ReactQuery } from './reactQuery';
+import { TransactionProvider } from './hooks/context.hook';
 
 const App = () => {
 	return (
 		<ReactQuery>
-			<DesktopViewRestrictor>
-				<Router/>
-			</DesktopViewRestrictor>
+			<TransactionProvider>
+				<DesktopViewRestrictor>
+					<Router/>
+				</DesktopViewRestrictor>
+			</TransactionProvider>
 		</ReactQuery>
 	);
 };

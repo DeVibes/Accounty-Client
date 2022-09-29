@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from 'react-query';
-import { fetchTransactionsRequest, postTransactionRequest } from '../API/transactions.api';
+import { deleteTransactionRequest, fetchTransactionsRequest, postTransactionRequest } from '../API/transactions.api';
 import { log, logArray } from '../logger';
 import { QueryKeys, QueryStatus } from '../reactQuery';
 import { calculateDailySpent, sortTransactionsByDate } from '../Services/transactions.service';
@@ -19,13 +19,24 @@ export const useFetchTransactions = () => {
 };
 
 export const usePostTransaction = callback => {
-    const { mutateAsync, isLoading } = useMutation(postTransactionRequest);
+    const { mutateAsync, isLoading } = useMutation(postTransactionRequest, {
+        onSuccess: callback
+    });
     const postTransaction = async newTransaction => {
 		await mutateAsync(newTransaction);
-        callback();
-    }
+    };
     return { postTransaction, isLoading };
 }
+
+export const useDeleteTransaction = callback => {
+    const { mutateAsync, isLoading } = useMutation(deleteTransactionRequest, {
+        onSuccess: callback
+    });
+    const deleteTransaction = async transactionId => {
+        await mutateAsync(transactionId);
+    };
+    return { deleteTransaction, isLoading };
+};
 
 const manipulateTransactions = transactions => {
     const sortedTransactions = sortTransactionsByDate(transactions, true);

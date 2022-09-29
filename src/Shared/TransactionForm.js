@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { CategoriesArray } from '../Data/categories';
 import { PaymentTypesArray } from '../Data/paymentTypes';
+import { usePostTransaction } from '../hooks/transactions.hook';
 
 const TransactionForm = ({ actions, isLoading }) => {
 	const { register, handleSubmit, formState: { errors } } = useForm();
