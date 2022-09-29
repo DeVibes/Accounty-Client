@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
+import { AppPages } from '../Data/pages';
 import { FabState, useSelectedTransaction } from '../hooks/context.hook';
 import { useDeleteTransaction, useFetchTransactions, usePostTransaction } from '../hooks/transactions.hook';
 import Feedback from '../Shared/Feedback';
@@ -13,6 +14,7 @@ const Layout = () => {
   const { states, setters } = useSelectedTransaction();
 	const { refetch } = useFetchTransactions();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const { pathname } = useLocation();
   const handlePlusClick = () => {
     setters.setFabState(FabState.SELECTED);
     setIsPopupOpen(true)
@@ -47,6 +49,7 @@ const Layout = () => {
           isSelectedTransaction: !!states.selectedTransaction, 
           fabState: states.fabState
         }}
+        isTransactionPage={pathname === AppPages[1].path}
       />
     </>
   );

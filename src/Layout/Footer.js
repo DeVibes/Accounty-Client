@@ -10,7 +10,7 @@ import { FabState } from '../hooks/context.hook';
 const footerClasses = `w-full bg-[#24283b] 
     rounded-t-xl p-4 flex justify-around relative`;
 
-const Footer = ({ handlers, states }) => {
+const Footer = ({ handlers, states, isTransactionPage }) => {
     return (
         <footer className={footerClasses}>
             {AppPages.map(pageData => (
@@ -20,9 +20,11 @@ const Footer = ({ handlers, states }) => {
                     key={pageData.value} 
                 />
             ))}
-            <FAB handlers={handlers}
-                fabState={states.fabState}
-            />
+            {isTransactionPage && (
+                <FAB handlers={handlers}
+                    fabState={states.fabState}
+                />
+            )}
         </footer>
     );
 };
