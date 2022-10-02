@@ -1,10 +1,9 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { CategoriesArray } from '../Data/categories';
-import { PaymentTypesArray } from '../Data/paymentTypes';
-import { usePostTransaction } from '../hooks/transactions.hook';
+import { CategoriesArray } from '../../utils/categories';
+import { PaymentTypesArray } from '../../utils/paymentTypes';
 
-const TransactionForm = ({ actions, isLoading }) => {
+export const TransactionForm = ({ actions, isLoading }) => {
 	const { register, handleSubmit, formState: { errors } } = useForm();
 	const onSubmit = handleSubmit(actions.postTransaction);
 	return (
@@ -43,8 +42,6 @@ const TransactionForm = ({ actions, isLoading }) => {
 		</form>
 	);
 };
-
-export default TransactionForm;
 
 const Input = ({ name, register, type = "text", required, label }) => {
 	const inputTitle = label.toUpperCase();

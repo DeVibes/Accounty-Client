@@ -29,7 +29,8 @@ export const useSelectedTransaction = () => {
 const FabState = {
     NOT_SELECTED: 0,
     DELETE: 1,
-    CONFIRM_DELETE: 2
+    CONFIRM_DELETE: 2,
+    
 };
 
 Object.freeze(FabState);

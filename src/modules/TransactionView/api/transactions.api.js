@@ -1,5 +1,5 @@
-import { apiRouteLocal, apiRouteQA } from "../config";
-import { log } from "../logger";
+import { apiRouteLocal, apiRouteQA } from "../../../config/config";
+import { log } from "../../../utils/logger";
 
 export const fetchTransactionsRequest = async () => {
     const response = await fetch(apiRouteLocal + "/transactions");

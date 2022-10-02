@@ -1,4 +1,4 @@
-import { env, Environment } from "./config";
+import { env, Environment } from "../config/config";
 
 export const log = msg => {
     if (env === Environment.LOCAL)

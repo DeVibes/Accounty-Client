@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { AppPages } from '../Data/pages';
-import { FabState, useSelectedTransaction } from '../hooks/context.hook';
-import { useDeleteTransaction, useFetchTransactions, usePostTransaction } from '../hooks/transactions.hook';
-import Feedback from '../Shared/Feedback';
-import Popup from '../Shared/Popup';
-import TransactionForm from '../Shared/TransactionForm';
+import { AppPages } from '../router/pages';
+import { FabState, useSelectedTransaction } from '../shared/hooks/context.hook';
+import { useDeleteTransaction, useFetchTransactions, usePostTransaction } from '../modules/TransactionView/hooks/transactions.hook';
 
-import Footer from './Footer';
-import Header from './Header';
+import Feedback from '../shared/components/Feedback';
+import { Footer } from '../modules/Footer';
+import { Header } from '../modules/Header';
+import Popup from '../shared/components/Popup';
+import { TransactionForm } from '../modules/TransactionForm/TransactionForm';
 
-const Layout = () => {
+export const Layout = () => {
   const { states, setters } = useSelectedTransaction();
 	const { refetch } = useFetchTransactions();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const { pathname } = useLocation();
   const handlePlusClick = () => {
     setters.setFabState(FabState.SELECTED);
@@ -42,6 +43,7 @@ const Layout = () => {
       <Popup isVisible={isPopupOpen} handleClose={handlePopupClose}>
         <TransactionForm actions={{ postTransaction }} isLoading={isLoading}/>
       </Popup>
+      <Feedback msg="yey" isVisible={isFeedbackOpen} handleClose={() => setIsFeedbackOpen(false)}/>
       <Header/>
       <Main/>
       <Footer handlers={{ handlePlusClick, handleDeleteClick, handleConfirmDeleteClick }} 
@@ -50,12 +52,11 @@ const Layout = () => {
           fabState: states.fabState
         }}
         isTransactionPage={pathname === AppPages[1].path}
+        isDeleteLoading={isDeleteLoading} 
       />
     </>
   );
 };
-
-export default Layout;
 
 const Main = () => 
   <main className='grow overflow-auto'>

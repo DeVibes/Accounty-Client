@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Router from './Router';
+import Router from './router/Router';
 import './App.css';
-import { ReactQuery } from './reactQuery';
-import { TransactionProvider } from './hooks/context.hook';
+import { ReactQuery } from './utils/reactQuery';
+import { TransactionProvider } from './shared/hooks/context.hook';
 
 const App = () => {
 	return (
