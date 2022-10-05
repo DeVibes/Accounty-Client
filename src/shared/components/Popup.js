@@ -7,7 +7,7 @@ const Popup = ({ children, isVisible, handleClose }) => {
   return (
     <>
         {isVisible && (
-          <section className={`absolute z-90 flex justify-center items-center w-full h-full
+          <section className={`absolute z-50 flex justify-center items-center w-full h-full
             backdrop-blur-md transition ease-in-out delay-150`}>
             <div className={`w-10/12 bg-[#24283b] p-4 rounded-lg relative`}>
             {/* <div className={`absolute z-90 w-10/12 p-4 bg-[#24283b] left-1/2 

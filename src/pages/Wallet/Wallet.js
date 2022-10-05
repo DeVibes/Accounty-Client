@@ -1,10 +1,10 @@
 import React from 'react';
-import { Transactions } from '../../modules/TransactionView';
+import { TransactionsView } from '../../modules/TransactionView';
 
 export const Wallet = () => {
-  return (
-    <div className='h-full'>
-      <Transactions/>
-    </div>
-  );
+	return (
+		<div className='h-full'>
+			<TransactionsView/>
+		</div>
+	);
 };

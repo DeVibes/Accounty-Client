@@ -1,22 +1,20 @@
 import React from 'react';
-import { FabState, useSelectedTransaction } from '../../shared/hooks/context.hook';
-import { useFetchTransactions } from './hooks/transactions.hook';
+import { TransactionsHeader } from './components/TransactionsHeader';
 import { TransactionsList } from './components/TransactionsList';
+import { useFetchTransactions } from './hooks/transactions.hook';
+import { SelectedTransactionProvider } from './context/selectedTransaction.context';
+import { TransactionActionButtonProvider } from './context/tab.context';
 
-export const Transactions = () => {
+export const TransactionsView = () => {
     const { transactions } = useFetchTransactions();
-    const { states, setters } = useSelectedTransaction();
-    const handleTransactionClick = selectedTid => {
-        setters.setSelectedTransaction(selectedTid);
-        setters.setFabState(selectedTid === null ? FabState.NOT_SELECTED : FabState.DELETE);
-    };
     return (
-        <section className='container p-4 h-full flex flex-col pr-0'>
-            {/* <TransactionsHeader/> */}
-            <TransactionsList transactions={transactions} 
-                onTransactionClick={handleTransactionClick}
-                selectedTransaction={states.selectedTransaction}
-            />
-        </section>
+        <TransactionActionButtonProvider>
+            <SelectedTransactionProvider>
+                <section className='container p-4 h-full flex flex-col pr-0 relative'>
+                    <TransactionsHeader/>
+                    <TransactionsList transactions={transactions}/>
+                </section>
+            </SelectedTransactionProvider>
+        </TransactionActionButtonProvider>
     );
 };

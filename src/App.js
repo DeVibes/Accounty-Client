@@ -1,38 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import Router from './router/Router';
+import React from 'react';
+
 import './App.css';
-import { ReactQuery } from './utils/reactQuery';
-import { TransactionProvider } from './shared/hooks/context.hook';
+import DesktopViewRestrictor from './utils/DesktopViewRestrictor'
+import { ReactQuery } from './utils/ReactQuery';
+import Router from './router/Router';
+import { PopupProvider } from './shared/context/popup.context';
 
 const App = () => {
 	return (
-		<ReactQuery>
-			<TransactionProvider>
+		<PopupProvider>
+			<ReactQuery>
 				<DesktopViewRestrictor>
 					<Router/>
 				</DesktopViewRestrictor>
-			</TransactionProvider>
-		</ReactQuery>
+			</ReactQuery>
+		</PopupProvider>
 	);
 };
 
 export default App;
-
-const DesktopViewRestrictor = ({ children }) => {
-	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-	const handleWindowResize = () => {
-		setWindowWidth(window.innerWidth)
-	};
-	useEffect(() => {
-		window.addEventListener('resize', handleWindowResize);
-		return () => {
-			window.removeEventListener('resize', handleWindowResize);
-		};
-	}, [windowWidth])
-	if (windowWidth <= 600)
-		return children;
-	else
-		return (
-			<>Only mobile</>
-		);
-};

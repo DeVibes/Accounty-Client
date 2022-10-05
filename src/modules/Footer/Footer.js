@@ -1,13 +1,12 @@
 import React from 'react';
 
 import { AppPages } from '../../router/pages';
-import { FAB } from './Fab';
-import { FooterIcon } from './FooterIcon';
+import { FooterIcon } from './components/FooterIcon';
 
 const footerClasses = `w-full bg-[#24283b] 
     rounded-t-xl p-4 flex justify-around relative`;
 
-export const Footer = ({ handlers, states, isTransactionPage, isDeleteLoading }) => {
+export const Footer = () => {
     return (
         <footer className={footerClasses}>
             {AppPages.map(pageData => (
@@ -17,12 +16,6 @@ export const Footer = ({ handlers, states, isTransactionPage, isDeleteLoading })
                     key={pageData.value} 
                 />
             ))}
-            {isTransactionPage && (
-                <FAB handlers={handlers}
-                    fabState={states.fabState}
-                    isLoading={isDeleteLoading}
-                />
-            )}
         </footer>
     );
 };

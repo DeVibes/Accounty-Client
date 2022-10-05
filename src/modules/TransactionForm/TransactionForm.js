@@ -1,7 +1,11 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
+import Spinner from '../../shared/components/Spinner';
 import { CategoriesArray } from '../../utils/categories';
 import { PaymentTypesArray } from '../../utils/paymentTypes';
+import { ErrorMsg } from './ErrorMsg';
+import { Input } from './Input';
+import { SelectInput } from './SelectInput';
 
 export const TransactionForm = ({ actions, isLoading }) => {
 	const { register, handleSubmit, formState: { errors } } = useForm();
@@ -33,69 +37,16 @@ export const TransactionForm = ({ actions, isLoading }) => {
 				{errors.date && <ErrorMsg msg="Please enter date"/>}
 			</div>
 			<div className="col-span-2 mt-2">
-				{isLoading ? (
-					<>LOADING</>
-				) : (
-					<input type="submit" className={`w-full text-white bg-[#7aa2f7] p-2 rounded-lg cursor-pointer`}/>
-				)}
+				<span className={`w-full text-white p-2 rounded-lg flex justify-center 
+					${isLoading ? "bg-slate-400 cursor-progress" : "bg-[#7aa2f7] cursor-pointer"}`}>
+					{isLoading ? (
+						<Spinner/>
+					) : (
+						<input type="submit" value="Save" className='cursor-pointer'/>
+					)}
+				</span>
 			</div>
 		</form>
 	);
 };
 
-const Input = ({ name, register, type = "text", required, label }) => {
-	const inputTitle = label.toUpperCase();
-	return (
-		<>
-			<label htmlFor={name} className='block mb-2 text-sm font-medium text-slate-400'>
-				{inputTitle}
-			</label>
-			<input type={type} id={name}
-				className={`bg-slate-600 border border-gray-600 text-grey-900 text-sm rounded-lg
-				focus:ring-blue-500 dark:focus:border-blue-500 block w-full p-2.5 dark:text-white`}
-				{...register(name, { required })}
-			/>
-		</>
-	);
-};
-
-const SelectInput = ({ name, register, options, label }) => {
-	const selectTitle = label.toUpperCase();
-	return (
-		<>
-			<label htmlFor={name} className="block mb-2 text-sm font-medium text-gray-400">
-				{selectTitle}
-			</label>
-			<select id={name} className={`bg-slate-600 border border-gray-600 text-sm rounded-lg
-			 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 text-white`} 
-			 	{...register(name)}
-			>
-				{options.length > 0 && options.map((option, index) => (
-					<option key={index} value={option.id}>{option.name}</option>
-				))}
-			</select>
-		</>
-	);
-};
-
-// const ToggleInput = ({ name, register }) => {
-// 	const toggleTitle = name.toUpperCase();
-// 	return (
-// 		<>
-// 			{/* <label htmlFor={name} className="block mb-2 text-sm font-medium text-gray-400">
-// 				{toggleTitle}
-// 			</label> */}
-// 			<input type="checkbox" id={name} className={`sr-only peer`}/>
-// 			<span></span>
-// 		</>
-// 	);
-// };
-
-
-const ErrorMsg = ({ msg }) => (
-	<p className="mt-2 text-sm text-red-400">
-		<span className="font-medium">
-			{msg}
-		</span>
-	</p>
-);

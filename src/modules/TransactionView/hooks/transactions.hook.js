@@ -1,7 +1,7 @@
-import { useMutation, useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { deleteTransactionRequest, fetchTransactionsRequest, postTransactionRequest } from '../api/transactions.api';
 import { log, logArray } from '../../../utils/logger';
-import { QueryKeys, QueryStatus } from '../../../utils/reactQuery';
+import { QueryKeys, QueryStatus } from '../../../utils/ReactQuery';
 import { calculateDailySpent, sortTransactionsByDate } from '../services/transactions.service';
 
 export const useFetchTransactions = () => {
@@ -19,21 +19,25 @@ export const useFetchTransactions = () => {
 };
 
 export const usePostTransaction = callback => {
+    const queryClient = useQueryClient();
     const { mutateAsync, isLoading } = useMutation(postTransactionRequest, {
         onSuccess: callback
     });
     const postTransaction = async newTransaction => {
 		await mutateAsync(newTransaction);
+        queryClient.invalidateQueries(QueryKeys.FETCH_TRANSACTIONS);
     };
     return { postTransaction, isLoading };
 }
 
 export const useDeleteTransaction = callback => {
+    const queryClient = useQueryClient();
     const { mutateAsync, isLoading } = useMutation(deleteTransactionRequest, {
         onSuccess: callback
     });
     const deleteTransaction = async transactionId => {
         await mutateAsync(transactionId);
+        queryClient.invalidateQueries(QueryKeys.FETCH_TRANSACTIONS);
     };
     return { deleteTransaction, isLoading };
 };

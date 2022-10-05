@@ -1,13 +1,13 @@
 import { CategoriesMap, Category } from "../../../utils/categories";
 import { PaymentTypesMap } from "../../../utils/paymentTypes";
 
-export const TransactionItem = ({ data, handleClick, isSelected }) => {
+export const TransactionItem = ({ data, isSelected, handleClick }) => {
     const Icon = CategoriesMap.get(data.categoryId)?.icon ?? Category.Unknown.icon;
     const paymentTypeName = PaymentTypesMap.get(data.paymentTypeId).name;
     return (
-        <div className={`grid grid-rows-2 grid-cols-6 p-2 rounded-lg 
+        <div className={`grid grid-rows-2 grid-cols-6 p-2 rounded-lg
          ${isSelected && "bg-slate-700"}`}
-            onClick={() => handleClick(isSelected ? null : data.id)}
+            onClick={handleClick}
         >
             <span className='row-start-1 row-span-2 col-span-1'>
                 <Icon size={50} color="white"/>
