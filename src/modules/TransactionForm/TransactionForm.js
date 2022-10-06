@@ -1,15 +1,22 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import Spinner from '../../shared/components/Spinner';
 import { CategoriesArray } from '../../utils/categories';
 import { PaymentTypesArray } from '../../utils/paymentTypes';
+import { usePostTransaction } from '../TransactionView/hooks/transactions.hook';
 import { ErrorMsg } from './ErrorMsg';
 import { Input } from './Input';
 import { SelectInput } from './SelectInput';
+import { SubmitButton } from './SubmitButton';
 
-export const TransactionForm = ({ actions, isLoading }) => {
+export const TransactionForm = ({ closePopup }) => {
 	const { register, handleSubmit, formState: { errors } } = useForm();
-	const onSubmit = handleSubmit(actions.postTransaction);
+	const onSuccessfulSubmit = () => {
+		setTimeout(() => {
+			closePopup();
+		}, 1500);
+	}
+	const { postTransaction, isLoading, isSuccess } = usePostTransaction(onSuccessfulSubmit);
+	const onSubmit = handleSubmit(postTransaction);
 	return (
 		<form onSubmit={onSubmit} 
 			className={`grid grid-rows-3 grid-cols-2
@@ -37,14 +44,7 @@ export const TransactionForm = ({ actions, isLoading }) => {
 				{errors.date && <ErrorMsg msg="Please enter date"/>}
 			</div>
 			<div className="col-span-2 mt-2">
-				<span className={`w-full text-white p-2 rounded-lg flex justify-center 
-					${isLoading ? "bg-slate-400 cursor-progress" : "bg-[#7aa2f7] cursor-pointer"}`}>
-					{isLoading ? (
-						<Spinner/>
-					) : (
-						<input type="submit" value="Save" className='cursor-pointer'/>
-					)}
-				</span>
+				<SubmitButton state={{ isLoading, isSuccess }}/>
 			</div>
 		</form>
 	);

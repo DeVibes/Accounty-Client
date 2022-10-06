@@ -14,7 +14,6 @@ export const TransactionActionButton = () => {
         setNotSelected();
     });
     const buttonStyles = "rounded-lg px-6 w-1/6 h-10 flex justify-center items-center";
-    // let buttonJsx;
     switch (tabState) {
         case TabState.NOT_SELECTED:
             return (

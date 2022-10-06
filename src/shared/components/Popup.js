@@ -1,7 +1,7 @@
 import React from 'react';
-import { GrClose as CloseIcon } from 'react-icons/gr';
 
 import { Color } from '../../utils/colors';
+import { CloseIcon } from '../../utils/icons';
 
 const Popup = ({ children, isVisible, handleClose }) => {
   return (

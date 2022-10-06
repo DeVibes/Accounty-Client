@@ -3,14 +3,17 @@ import { createContext, useContext, useState } from "react"
 const PopupCtx = createContext(null);
 
 export const PopupProvider = ({ children }) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
     const api = {
-        openPopup: () => setIsOpen(true),
-        closePopup: () => setIsOpen(false)
+        openPopup: () => setIsPopupOpen(true),
+        closePopup: () => setIsPopupOpen(false),
+        showFeedback: () => setIsFeedbackOpen(true),
+        hideFeedback: () => setIsFeedbackOpen(false),
     };
 
     return (
-        <PopupCtx.Provider value={{isOpen, ...api}}>
+        <PopupCtx.Provider value={{isFeedbackOpen, isPopupOpen, ...api}}>
             {children}
         </PopupCtx.Provider>
     );

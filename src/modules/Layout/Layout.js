@@ -12,18 +12,18 @@ import { TransactionForm } from '../TransactionForm/TransactionForm';
 import { usePopupContext } from '../../shared/context/popup.context';
 
 export const Layout = () => {
-  const { isOpen, closePopup } = usePopupContext();
+  const { isPopupOpen, isFeedbackOpen, closePopup, showFeedback, hideFeedback } = usePopupContext();
   const { pathname } = useLocation();
   const onSuccessfulSubmit = () => {
     closePopup();
   }
-  const { postTransaction, isLoading } = usePostTransaction(onSuccessfulSubmit);
+  // const { postTransaction, isLoading } = usePostTransaction(onSuccessfulSubmit);
   return (
     <>
-      <Popup isVisible={isOpen} handleClose={closePopup}>
-        <TransactionForm actions={{ postTransaction }} isLoading={isLoading}/>
+      <Popup isVisible={isPopupOpen} handleClose={closePopup}>
+        <TransactionForm closePopup={closePopup}/>
       </Popup>
-      {/* <Feedback msg="yey" isVisible={isFeedbackOpen} handleClose={() => setIsFeedbackOpen(false)}/> */}
+      <Feedback isVisible={isFeedbackOpen} handleClose={hideFeedback}/>
       <Header/>
       <Main/>
       <Footer/>
