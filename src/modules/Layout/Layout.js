@@ -1,9 +1,5 @@
-import React, { useState } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
-import { AppPages } from '../../router/pages';
-// import { useSelectedTransaction } from '../modules/TransactionView/context/selectedTransaction.context';
-import { useDeleteTransaction, useFetchTransactions, usePostTransaction } from '../TransactionView/hooks/transactions.hook';
-
+import React from 'react';
+import { Outlet } from 'react-router-dom';
 import Feedback from '../../shared/components/Feedback';
 import { Footer } from '../Footer';
 import { Header } from '../Header';
@@ -12,12 +8,7 @@ import { TransactionForm } from '../TransactionForm/TransactionForm';
 import { usePopupContext } from '../../shared/context/popup.context';
 
 export const Layout = () => {
-  const { isPopupOpen, isFeedbackOpen, closePopup, showFeedback, hideFeedback } = usePopupContext();
-  const { pathname } = useLocation();
-  const onSuccessfulSubmit = () => {
-    closePopup();
-  }
-  // const { postTransaction, isLoading } = usePostTransaction(onSuccessfulSubmit);
+  const { isPopupOpen, isFeedbackOpen, closePopup, hideFeedback } = usePopupContext();
   return (
     <>
       <Popup isVisible={isPopupOpen} handleClose={closePopup}>

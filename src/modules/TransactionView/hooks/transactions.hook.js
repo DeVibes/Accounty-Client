@@ -21,25 +21,29 @@ export const useFetchTransactions = () => {
 export const usePostTransaction = callback => {
     const queryClient = useQueryClient();
     const { mutateAsync, isLoading, isSuccess } = useMutation(postTransactionRequest, {
-        onSuccess: callback
+        onSuccess: () => {
+            callback();
+            queryClient.invalidateQueries(QueryKeys.FETCH_TRANSACTIONS);
+        }
     });
     const postTransaction = async newTransaction => {
 		await mutateAsync(newTransaction);
-        queryClient.invalidateQueries(QueryKeys.FETCH_TRANSACTIONS);
     };
     return { postTransaction, isLoading, isSuccess };
 }
 
 export const useDeleteTransaction = callback => {
     const queryClient = useQueryClient();
-    const { mutateAsync, isLoading } = useMutation(deleteTransactionRequest, {
-        onSuccess: callback
+    const { mutateAsync, isLoading, isSuccess } = useMutation(deleteTransactionRequest, {
+        onSuccess: () => {
+            callback();
+            queryClient.invalidateQueries(QueryKeys.FETCH_TRANSACTIONS);
+        }
     });
     const deleteTransaction = async transactionId => {
         await mutateAsync(transactionId);
-        queryClient.invalidateQueries(QueryKeys.FETCH_TRANSACTIONS);
     };
-    return { deleteTransaction, isLoading };
+    return { deleteTransaction, isLoading, isSuccess };
 };
 
 const manipulateTransactions = transactions => {

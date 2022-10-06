@@ -10,10 +10,13 @@ export const TransactionActionButton = () => {
     const { openPopup } = usePopupContext();
     const { selectedTransaction } = useSelectedTransaction();
     const { tabState, setConfirm, setNotSelected } = useTabState();
-    const { deleteTransaction, isLoading } = useDeleteTransaction(() => {
-        setNotSelected();
-    });
-    const buttonStyles = "rounded-lg px-6 w-1/6 h-10 flex justify-center items-center";
+    const onSuccessfulDelete = () => {
+        setTimeout(() => {
+            setNotSelected();
+        }, 1500);
+    };
+    const { deleteTransaction, isLoading, isSuccess } = useDeleteTransaction(onSuccessfulDelete);
+    const buttonStyles = "rounded-lg px-6 w-1/5 h-8 flex justify-center items-center";
     switch (tabState) {
         case TabState.NOT_SELECTED:
             return (
@@ -32,17 +35,20 @@ export const TransactionActionButton = () => {
                 </button>
             );
         case TabState.CONFIRM_DELETE:
+            let buttonJsx;
+            if (isLoading)
+                buttonJsx = <Spinner/>;
+            else if (isSuccess)
+                buttonJsx = <ConfirmIcon size={25}/>;
+            else
+                buttonJsx = <span className='text-md'>Confirm?</span>;
             return (
-                <button className={`${buttonStyles} border border-red-400 text-red-400`}
+                <button className={`${buttonStyles} border-red-400 
+                    ${isLoading ? "bg-slate-400 cursor-not-allowed" : "bg-red-400"}`}
                     onClick={() => deleteTransaction(selectedTransaction)}
+                    disabled={isLoading}
                 >
-                    {isLoading ? (
-                        <span className="text-red-400 fill-red-400">
-                            <Spinner/>
-                        </span>
-                    ): (
-                        <ConfirmIcon size={25}/>
-                    )}
+                    {buttonJsx}
                 </button>
             );
         default: break;

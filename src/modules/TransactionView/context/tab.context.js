@@ -17,7 +17,7 @@ export const TransactionActionButtonProvider = ({ children }) => {
     const tabApi = {
         setNotSelected: () => setTabState(TabState.NOT_SELECTED),
         setDelete: () => setTabState(TabState.DELETE),
-        setConfirm: () => setTabState(TabState.CONFIRM_DELETE),
+        setConfirm: () => setTabState(TabState.CONFIRM_DELETE)
     };
 
     return (
