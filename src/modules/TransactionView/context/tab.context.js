@@ -5,7 +5,6 @@ export class TabState {
     static NOT_SELECTED = new TabState(0);
     static DELETE = new TabState(1);
     static CONFIRM_DELETE = new TabState(2);
-    static LOADING = new TabState(3);
     constructor(id) {
         this.id = id;
     }
@@ -19,7 +18,6 @@ export const TransactionActionButtonProvider = ({ children }) => {
         setNotSelected: () => setTabState(TabState.NOT_SELECTED),
         setDelete: () => setTabState(TabState.DELETE),
         setConfirm: () => setTabState(TabState.CONFIRM_DELETE),
-        setLoading: () => setTabState(TabState.LOADING)
     };
 
     return (

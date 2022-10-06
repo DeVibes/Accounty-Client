@@ -9,7 +9,7 @@ import { useSelectedTransaction } from '../context/selectedTransaction.context';
 export const TransactionActionButton = () => {
     const { openPopup } = usePopupContext();
     const { selectedTransaction } = useSelectedTransaction();
-    const { tabState, setConfirm, setLoading, setNotSelected } = useTabState();
+    const { tabState, setConfirm, setNotSelected } = useTabState();
     const { deleteTransaction, isLoading } = useDeleteTransaction(() => {
         setNotSelected();
     });
