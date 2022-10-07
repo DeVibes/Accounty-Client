@@ -10,7 +10,7 @@ export const TransactionItem = ({ data, isSelected, handleClick }) => {
             onClick={handleClick}
         >
             <span className='row-start-1 row-span-2 col-span-1'>
-                <Icon size={50} color="white"/>
+                <Icon size={45} color="white"/>
             </span>
             <div className='row-start-1 col-start-2 col-span-5 flex justify-between'>
                 <span className='text-slate-300'>{data.description}</span>

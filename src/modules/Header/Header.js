@@ -1,7 +1,17 @@
 import React from 'react';
+import { LeftArrow } from '../../utils/icons';
+import { useRouting } from '../Router/hooks/routing.hook';
 
 export const Header = () => {
+  const { pageTitle, isBackBtnShown, goBack } = useRouting();
   return (
-    <div>Header</div>
+    <header className='text-slate-300 w-full px-4 pt-8 pb-2 relative'>
+      {isBackBtnShown && (
+      <span>
+        <LeftArrow size={25} className='inline cursor-pointer' onClick={goBack}/>
+      </span>
+      )}
+      <span className='absolute -translate-x-1/2 left-1/2 font-bold'>{pageTitle}</span>
+    </header>
   );
 };

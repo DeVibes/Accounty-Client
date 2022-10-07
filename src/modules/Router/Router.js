@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Dashboard } from '../pages/Dashboard';
-import { Layout } from '../modules/Layout';
-import { Wallet } from '../pages/Wallet';
+import { Dashboard } from '../../pages/Dashboard';
+import { Layout } from '../Layout';
+import { Wallet } from '../../pages/Wallet';
 
 import { AppPages } from './pages';
 
-const Router = () => {
+export const Router = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
@@ -18,5 +18,3 @@ const Router = () => {
 		</BrowserRouter>
 	);
 };
-
-export default Router;

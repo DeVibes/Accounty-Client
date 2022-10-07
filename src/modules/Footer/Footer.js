@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AppPages } from '../../router/pages';
+import { AppPages } from '../Router/pages';
 import { FooterIcon } from './components/FooterIcon';
 
 const footerClasses = `w-full bg-[#24283b] 
