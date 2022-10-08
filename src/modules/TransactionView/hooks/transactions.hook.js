@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { deleteTransactionRequest, fetchTransactionsRequest, postTransactionRequest } from '../api/transactions.api';
-import { log, logArray } from '../../../utils/logger';
+import { logArray } from '../../../utils/logger';
 import { QueryKeys, QueryStatus } from '../../../utils/ReactQuery';
 import { calculateDailySpent, sortTransactionsByDate } from '../services/transactions.service';
 
@@ -13,7 +13,7 @@ export const useFetchTransactions = () => {
     );
     logArray(data);
     let transactions = data ?? [];
-    if (status === QueryStatus.SUCCESS && transactions.length != 0)
+    if (status === QueryStatus.SUCCESS && transactions.length !== 0)
         transactions = manipulateTransactions(transactions);
     return { transactions, status, refetch };
 };

@@ -1,8 +1,8 @@
-import { apiRouteLocal, apiRouteQA } from "../../../config/config";
+import { apiRoute } from "../../../config";
 import { log } from "../../../utils/logger";
 
 export const fetchTransactionsRequest = async () => {
-    const response = await fetch(apiRouteLocal + "/transactions");
+    const response = await fetch(apiRoute+ "/transactions");
     const transactions = await response.json();
     return transactions;
 };
@@ -13,7 +13,7 @@ export const postTransactionRequest = async transaction => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(transaction)
     };
-    const response = await fetch(apiRouteLocal + "/transactions", requestOptions);
+    const response = await fetch(apiRoute+ "/transactions", requestOptions);
     log(response);
 };
 
@@ -22,6 +22,6 @@ export const deleteTransactionRequest = async transactionId => {
         method: "DELETE",
         headers: { 'Content-Type': 'application/json' }
     };
-    const response = await fetch(apiRouteLocal + `/transactions/${transactionId}`, requestOptions);
+    const response = await fetch(apiRoute+ `/transactions/${transactionId}`, requestOptions);
     log(response);
 };
