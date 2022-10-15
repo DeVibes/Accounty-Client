@@ -7,7 +7,7 @@ export const FooterIcon = ({ props, size, onItemClick }) => {
             to={path}
             children={({ isActive }) => {
                 const iconClasses = isActive ?
-                `fill-[#8c4351]` :
+                `fill-[#8c4351] scale-150` :
                 `fill-slate-400`;
                 return (
                     <Icon

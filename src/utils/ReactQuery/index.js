@@ -2,6 +2,8 @@ export * from './ReactQuery';
 
 const QueryKeys = {
     FETCH_TRANSACTIONS: 'fetchTransactions',
+    FETCH_PAYMENT_TYPES: 'fetchPaymentTypes',
+    FETCH_CATEGOIRES: 'fetchCategories'
 };
 
 const QueryStatus = {

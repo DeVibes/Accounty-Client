@@ -1,6 +1,6 @@
 import React from 'react';
-import Spinner from '../../shared/components/Spinner';
-import { ConfirmIcon } from '../../utils/icons';
+import Spinner from '../../../shared/components/Spinner';
+import { ConfirmIcon } from '../../../utils/icons';
 
 export const SubmitButton = ({ state }) => {
     const { isLoading, isSuccess } = state;

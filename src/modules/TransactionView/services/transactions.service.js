@@ -27,7 +27,6 @@ const sortTransactionsByDate = (transactions, isDesc = false) => {
 const sliceTimeFromDateString = dateString => dateString?.slice(0, 10);
 
 const calculateDailySpent = transactions => {
-    // transactions = transactions.filter(tr => tr.catId === )
     transactions.reverse();
     let dailySum = 0;
     const modifiedTransactions = transactions.map((tr, index) => {
@@ -39,7 +38,7 @@ const calculateDailySpent = transactions => {
             return tr;
         const newTr = {
             ...tr,
-            date: new Date(tr.date),
+            date: tr.date,
             isLast: true,
             dailySum
         }
@@ -49,8 +48,23 @@ const calculateDailySpent = transactions => {
     return modifiedTransactions.reverse();
 };
 
+const markFirstPerDay = transactions => {
+    transactions.reverse();
+    let isFirst = true;
+    const markedTransactions = transactions.map((tr, index) => {
+        const trDate = new Date(sliceTimeFromDateString(tr.date));
+        const isNextTrSameDay = 
+            trDate.getTime() === new Date(sliceTimeFromDateString(transactions[index + 1]?.date)).getTime();
+        tr = { ...tr, isFirst };
+        isFirst = !isNextTrSameDay;
+        return tr;
+    });
+    return markedTransactions.reverse();
+}
+
 export {
     sortTransactionsByDate,
     sliceTimeFromDateString,
-    calculateDailySpent
+    calculateDailySpent,
+    markFirstPerDay
 }

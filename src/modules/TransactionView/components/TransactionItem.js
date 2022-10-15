@@ -1,11 +1,10 @@
 import { CategoriesMap, Category } from "../../../utils/categories";
-import { PaymentTypesMap } from "../../../utils/paymentTypes";
 
-export const TransactionItem = ({ data, isSelected, handleClick }) => {
-    const Icon = CategoriesMap.get(data.categoryId)?.icon ?? Category.Unknown.icon;
-    const paymentTypeName = PaymentTypesMap.get(data.paymentTypeId).name;
+export const TransactionItem = ({ data, isSelected, isAbsoluteFirst, handleClick }) => {
+    const Icon = CategoriesMap.get(data.category.name)?.icon ?? Category.Unknown.icon;
+    const isBottomBorderShown = !data.isFirst || isAbsoluteFirst;
     return (
-        <div className={`grid grid-rows-2 grid-cols-6 p-2 rounded-lg
+        <div className={`grid grid-rows-2 grid-cols-6 p-2 ${isBottomBorderShown && "rounded-lg border-b-2 border-slate-800"}
          ${isSelected && "bg-slate-700"}`}
             onClick={handleClick}
         >
@@ -20,7 +19,7 @@ export const TransactionItem = ({ data, isSelected, handleClick }) => {
             </div>
             <div className='row-start-2 col-start-2 col-span-5 flex justify-between'>
                 <span className='text-slate-500'>{data.store}</span>
-                <span className='text-slate-500'>{paymentTypeName}</span>
+                <span className='text-slate-500'>{data.paymentType.name}</span>
             </div>
         </div>
     );

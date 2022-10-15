@@ -1,15 +1,14 @@
-import { HiOutlineShoppingBag as BagIcon } from "react-icons/hi";
-import { AiOutlineCar as CarIcon } from "react-icons/ai";
-import { BsFillQuestionSquareFill as UnknownIcon } from "react-icons/bs"; 
+import { BagIcon, BodySoulIcon, CarIcon, FoodIcon, HouseIcon, UnknownIcon } from "./icons";
 
 export const CategoriesMap = new Map();
-export const CategoriesArray = [];
 export class Category {
-    static Shopping = new Category(1, "Shopping", BagIcon);
-    static Car = new Category(2, "Car", CarIcon);
-    static Unknown = new Category(3, "Unkown", UnknownIcon);
-    constructor(id, name, icon) {
-        this.id = id;
+    static Unknown = new Category("Unknown", UnknownIcon);
+    static Shopping = new Category("Shopping", BagIcon);
+    static Car = new Category("Car", CarIcon);
+    static EatOut = new Category("EatOut", FoodIcon);
+    static House = new Category("House", HouseIcon);
+    static BodySoul = new Category("Body & Soul", BodySoulIcon);
+    constructor(name, icon) {
         this.name = name;
         this.icon = icon;
     }
@@ -17,6 +16,7 @@ export class Category {
 
 for (const prop in Category) {
     const category = Category[prop];
-    CategoriesMap.set(category.id, category);
-    CategoriesArray.push(category);
+    if (category === Category.Unknown)
+        continue;
+    CategoriesMap.set(category.name, category);
 }

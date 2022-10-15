@@ -2,19 +2,21 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { deleteTransactionRequest, fetchTransactionsRequest, postTransactionRequest } from '../api/transactions.api';
 import { logArray } from '../../../utils/logger';
 import { QueryKeys, QueryStatus } from '../../../utils/ReactQuery';
-import { calculateDailySpent, sortTransactionsByDate } from '../services/transactions.service';
+import { calculateDailySpent, sortTransactionsByDate, markFirstPerDay } from '../services/transactions.service';
 
 export const useFetchTransactions = () => {
     const { data, status, refetch } = useQuery(QueryKeys.FETCH_TRANSACTIONS, 
         fetchTransactionsRequest,
         {
-            refetchOnWindowFocus: false
+            refetchOnWindowFocus: false,
         }
     );
-    logArray(data);
     let transactions = data ?? [];
-    if (status === QueryStatus.SUCCESS && transactions.length !== 0)
+    if (status === QueryStatus.SUCCESS && transactions.length !== 0) {
+
         transactions = manipulateTransactions(transactions);
+    }
+    logArray(transactions)
     return { transactions, status, refetch };
 };
 
@@ -49,5 +51,6 @@ export const useDeleteTransaction = callback => {
 const manipulateTransactions = transactions => {
     const sortedTransactions = sortTransactionsByDate(transactions, true);
     const calculatedTransactions = calculateDailySpent(sortedTransactions);
-    return calculatedTransactions;
+    const markedTransactions = markFirstPerDay(calculatedTransactions);
+    return markedTransactions;
 }

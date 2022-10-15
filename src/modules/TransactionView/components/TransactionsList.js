@@ -9,7 +9,7 @@ export const TransactionsList = ({ transactions }) => {
     const { setNotSelected, setDelete } = useTabState();
     return (
         <div className='overflow-auto pr-4'>
-            {transactions.length > 0 && transactions.map(tr => {
+            {transactions.length > 0 && transactions.map((tr, index) => {
                 const isSelected = selectedTransaction === tr.id;
                 const handleTransactionClick =() => {
                     setTr(tr.id);
@@ -26,6 +26,7 @@ export const TransactionsList = ({ transactions }) => {
                         <TransactionItem data={tr}
                             handleClick={handleTransactionClick}
                             isSelected={isSelected}
+                            isAbsoluteFirst={index === transactions.length - 1}
                         />
                     </div>
                 )

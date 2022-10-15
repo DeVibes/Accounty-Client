@@ -14,7 +14,6 @@ export const postTransactionRequest = async transaction => {
         body: JSON.stringify(transaction)
     };
     const response = await fetch(apiRoute+ "/transactions", requestOptions);
-    log(response);
 };
 
 export const deleteTransactionRequest = async transactionId => {
@@ -23,5 +22,4 @@ export const deleteTransactionRequest = async transactionId => {
         headers: { 'Content-Type': 'application/json' }
     };
     const response = await fetch(apiRoute+ `/transactions/${transactionId}`, requestOptions);
-    log(response);
 };

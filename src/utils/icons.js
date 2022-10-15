@@ -1,9 +1,18 @@
-import { IoAddOutline as PlusIcon } from 'react-icons/io5';
-import { MdOutlineDeleteOutline as DeleteIcon } from 'react-icons/md';
-import { GiConfirmed as ConfirmIcon } from 'react-icons/gi';
-import { GrClose as CloseIcon } from 'react-icons/gr';
-import { MdDashboard as DashboardIcon } from 'react-icons/md';
-import { GiWallet as WalletIcon } from 'react-icons/gi';
-import { BsArrowLeft as LeftArrow } from 'react-icons/bs'
-
-export { PlusIcon, ConfirmIcon, DeleteIcon, CloseIcon, DashboardIcon, WalletIcon, LeftArrow }; 
+export { CgPill as BodySoulIcon } from 'react-icons/cg'
+export { IoAddOutline as PlusIcon } from 'react-icons/io5';
+export { MdOutlineDeleteOutline as DeleteIcon, 
+    MdOutlineFastfood as FoodIcon, 
+    MdDashboard as DashboardIcon 
+} from 'react-icons/md';
+export { GiConfirmed as ConfirmIcon,
+    GiWallet as WalletIcon
+} from 'react-icons/gi';
+export { GrClose as CloseIcon, 
+    GrStatusUnknown as UnknownCategoryIcon 
+} from 'react-icons/gr';
+export { BsArrowLeft as LeftArrow, 
+    BsFillQuestionSquareFill as UnknownIcon,
+    BsHouseDoor as HouseIcon
+} from 'react-icons/bs'
+export { HiOutlineShoppingBag as BagIcon } from "react-icons/hi";
+export { AiOutlineCar as CarIcon } from "react-icons/ai";
