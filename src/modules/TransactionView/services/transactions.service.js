@@ -1,23 +1,3 @@
-// import { fetchTransactions } from "../API/transactions.api";
-// import { mockTransactions } from "../Data/transactions.mock";
-// import { logArray } from "../logger";
-
-// export const getTransactions = async () => {
-//     try {
-//         // const response = mockTransactions;
-//         const response = await fetchTransactions();
-//         const transactions = sortTransactionsByDate(response);
-//         if (transactions?.length === 0)
-//             return [];
-//             const updatedTransactions = calculateDailySpent(transactions).reverse();
-//             logArray(updatedTransactions);
-//             return updatedTransactions;
-//     } catch (error) {
-//         console.error(error.message);
-//         return [];
-//     }
-// };
-
 const sortTransactionsByDate = (transactions, isDesc = false) => {
     const compareFn = isDesc ? (a, b) => new Date(b.date) - new Date(a.date) :
         (a, b) => new Date(a.date) - new Date(b.date);
@@ -33,7 +13,8 @@ const calculateDailySpent = transactions => {
         const trDate = new Date(sliceTimeFromDateString(tr.date));
         const isNextTrSameDay = 
             trDate.getTime() === new Date(sliceTimeFromDateString(transactions[index + 1]?.date)).getTime();
-        dailySum += tr.price;
+        if (tr.price < 0)
+            dailySum += tr.price;
         if (isNextTrSameDay) 
             return tr;
         const newTr = {

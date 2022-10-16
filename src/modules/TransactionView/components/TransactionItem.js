@@ -13,8 +13,8 @@ export const TransactionItem = ({ data, isSelected, isAbsoluteFirst, handleClick
             </span>
             <div className='row-start-1 col-start-2 col-span-5 flex justify-between'>
                 <span className='text-slate-300'>{data.description}</span>
-                <span className={data.price > 0 ? 'text-[#9ece6a]' : 'text-[#8c4351]'}>
-                    {data.price}₪
+                <span className='text-slate-300'>
+                    {data.price > 0 && "+"}{Math.abs(data.price)}₪
                 </span>
             </div>
             <div className='row-start-2 col-start-2 col-span-5 flex justify-between'>

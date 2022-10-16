@@ -16,3 +16,4 @@ export { BsArrowLeft as LeftArrow,
 } from 'react-icons/bs'
 export { HiOutlineShoppingBag as BagIcon } from "react-icons/hi";
 export { AiOutlineCar as CarIcon } from "react-icons/ai";
+export { FaRegMoneyBillAlt as IncomeIcon } from 'react-icons/fa'
