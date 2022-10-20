@@ -1,7 +1,7 @@
 import React from 'react'
 
-export const NotificationBadgeHOC = ({ children, isSeen }) => {
-    if (isSeen)
+export const NotificationBadgeHOC = ({ children, isShown }) => {
+    if (isShown)
         return (
             <span className='relative'>
                 {children}

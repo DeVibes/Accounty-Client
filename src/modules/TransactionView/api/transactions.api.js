@@ -16,6 +16,14 @@ export const postTransactionRequest = async transaction => {
     const response = await fetch(apiRoute+ "/transactions", requestOptions);
 };
 
+export const patchTransactionRequest = async ({trId, seen})  => {
+    const requestOptions = {
+        method: "PATCH",
+        headers: { 'Content-Type': 'application/json' },
+    };
+    const response = await fetch(apiRoute+ `/transactions/${trId}?seen=${seen}`, requestOptions);
+};
+
 export const deleteTransactionRequest = async transactionId => {
     const requestOptions = {
         method: "DELETE",
