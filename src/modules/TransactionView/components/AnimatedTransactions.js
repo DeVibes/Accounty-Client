@@ -6,12 +6,11 @@ export const AnimatedTransactions = ({ transactions, selectedTransaction, setTr 
     return (
         <motion.ul variants={list} initial="hidden" animate="visible">
             {transactions.map((tr, index) => 
-                <motion.li variants={item}>
+                <motion.li variants={item} key={index}>
                     <TransactionItem data={tr}
                         handleClick={() => setTr(tr.id)}
                         isSelected={selectedTransaction === tr.id}
                         isAbsoluteFirst={index === transactions.length - 1}
-                        key={index}
                     />
                 </motion.li>   
             )}

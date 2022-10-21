@@ -3,9 +3,10 @@ import { logArray } from "../../../utils/logger";
 import { QueryKeys } from "../../../utils/ReactQuery";
 import { fetchPaymentTypes } from "../api/payments.api";
 
-export const useFetchPaymentTypes = () => {
+export const useFetchPaymentTypes = callback => {
     const { data, isLoading } = useQuery(QueryKeys.FETCH_PAYMENT_TYPES, fetchPaymentTypes, {
-        refetchOnWindowFocus: false
+        refetchOnWindowFocus: false,
+        onSuccess: callback
     });
     let paymentTypes = data ?? [];
     logArray(paymentTypes);

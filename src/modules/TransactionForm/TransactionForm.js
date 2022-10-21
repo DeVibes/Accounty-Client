@@ -9,7 +9,17 @@ import { useFetchCategories } from './hooks/categories.hook';
 import { useFetchPaymentTypes } from './hooks/payments.hook';
 
 export const TransactionForm = ({ closePopup }) => {
-	const { register, handleSubmit, formState: { errors } } = useForm();
+	const { register, handleSubmit, formState: { errors }, reset } = useForm({
+		defaultValues: {
+			categoryId: "",
+			paymentTypeId: ""
+		}
+	});
+	const updateCategoryDefault = () => reset({ categoryId: categories[0]?.id });
+	const updatePaymentDefault = () => reset({ paymentTypeId: paymentTypes[0]?.id });
+	const { categories, isLoading: isCatLoading } = useFetchCategories(updateCategoryDefault);
+	const { paymentTypes, isLoading: isPayLoading } = useFetchPaymentTypes(updatePaymentDefault);
+	const isFormLoading = isCatLoading || isPayLoading;
 	const onSuccessfulSubmit = () => {
 		setTimeout(() => {
 			closePopup();
@@ -17,8 +27,6 @@ export const TransactionForm = ({ closePopup }) => {
 	}
 	const { postTransaction, isLoading, isSuccess } = usePostTransaction(onSuccessfulSubmit);
 	const onSubmit = handleSubmit(postTransaction);
-	const { categories, isLoading: isCatLoading } = useFetchCategories();
-	const { paymentTypes, isLoading: isPayLoading } = useFetchPaymentTypes();
 	return (
 		<form onSubmit={onSubmit} 
 			className={`grid grid-rows-3 grid-cols-2
@@ -46,7 +54,7 @@ export const TransactionForm = ({ closePopup }) => {
 				{errors.date && <ErrorMsg msg="Please enter date"/>}
 			</div>
 			<div className="col-span-2 mt-2">
-				<SubmitButton state={{ isLoading, isSuccess }}/>
+				<SubmitButton state={{ isLoading, isSuccess }} isFormLoading={isFormLoading}/>
 			</div>
 		</form>
 	);
