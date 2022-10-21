@@ -5,12 +5,12 @@ import { useFetchTransactions } from './hooks/transactions.hook';
 import { SelectedTransactionProvider } from './context/selectedTransaction.context';
 
 export const TransactionsView = () => {
-    const { transactions } = useFetchTransactions();
+    const { transactions, isLoading } = useFetchTransactions();
     return (
         <SelectedTransactionProvider>
             <section className='container p-4 h-full flex flex-col pr-0 relative'>
                 <TransactionsHeader/>
-                <TransactionsList transactions={transactions}/>
+                <TransactionsList transactions={transactions} isLoading={isLoading}/>
             </section>
         </SelectedTransactionProvider>
     );

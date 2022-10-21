@@ -12,12 +12,3 @@ export const SlideAnimationHOC = ({ children, trigger, elementWidth, direction="
         </motion.span>
     );
 };
-
-export const ExpendAnimationHOC = ({ children, trigger, className, onClick }) => {
-    return (
-        <motion.span layout className={className} onClick={onClick}>
-            {children}
-        </motion.span>
-    );
-};
-

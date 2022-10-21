@@ -17,8 +17,8 @@ export const TransactionForm = ({ closePopup }) => {
 	}
 	const { postTransaction, isLoading, isSuccess } = usePostTransaction(onSuccessfulSubmit);
 	const onSubmit = handleSubmit(postTransaction);
-	const { categories, catStatus } = useFetchCategories();
-	const { paymentTypes, payStatus } = useFetchPaymentTypes();
+	const { categories, isLoading: isCatLoading } = useFetchCategories();
+	const { paymentTypes, isLoading: isPayLoading } = useFetchPaymentTypes();
 	return (
 		<form onSubmit={onSubmit} 
 			className={`grid grid-rows-3 grid-cols-2
@@ -32,14 +32,14 @@ export const TransactionForm = ({ closePopup }) => {
 				<Input name="store" register={register} label="Store"/>
 			</div>
 			<div>
-				<SelectInput name="categoryId" register={register} options={categories} label="Category"/>
+				<SelectInput name="categoryId" register={register} options={categories} label="Category" isLoading={isCatLoading}/>
 			</div>
 			<div>
 				<Input name="price" register={register} type="number" required label="Price"/>
 				{errors.price && <ErrorMsg msg="Please enter price"/>}
 			</div>
 			<div>
-				<SelectInput name="paymentTypeId" register={register} options={paymentTypes} label="Payment"/>
+				<SelectInput name="paymentTypeId" register={register} options={paymentTypes} label="Payment" isLoading={isPayLoading}/>
 			</div>
 			<div>
 				<Input name="date" type='datetime-local' register={register} required label="Date"/>
