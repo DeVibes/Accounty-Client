@@ -38,9 +38,7 @@ export const useDeleteTransaction = () => {
     const queryClient = useQueryClient();
     const { mutateAsync, isLoading, isSuccess } = useMutation(deleteTransactionRequest, {
         onSuccess: () => {
-            setTimeout(() => {
-                queryClient.invalidateQueries(QueryKeys.FETCH_TRANSACTIONS);
-            }, 1500);
+            queryClient.invalidateQueries(QueryKeys.FETCH_TRANSACTIONS);
         }
     });
     const deleteTransaction = async transactionId => {

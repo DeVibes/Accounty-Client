@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { SlideAnimationHOC } from "../../../../shared/components/Animation/SlideAnimationHOC";
 import { ExpendAnimationHOC } from "../../../../shared/components/Animation/ExpendAnimationHOC";
 import { CategoriesMap, Category } from "../../../../utils/categories";
@@ -9,15 +8,25 @@ import { TransactionLeftData } from "./TransactionLeftData";
 import { TransactionRightData } from "./TransactionRightData";
 import { TransactionRightActions } from "./TransactionRightActions";
 import { TransactionItemHeader } from "./TransactionItemHeader";
+import { useSelectedTransaction } from "../../context/selectedTransaction.context";
+import { useState } from "react";
+import { useEffect } from "react";
 
-export const TransactionItem = ({ data, isSelected, isAbsoluteFirst, handleClick }) => {
-    const Icon = CategoriesMap.get(data.category.name)?.icon ?? Category.Unknown.icon;
-    const isTransactionSeen = data.seen;
-    const isBottomBorderShown = (!data.isFirst || isAbsoluteFirst) && !isSelected;
+export const TransactionItem = ({ data, isAbsoluteFirst }) => {
+    const { selectedTransaction, updateSelectedTransaction } = useSelectedTransaction(); 
     const [isConfirmDelete, setIsConfirmDelete] = useState(false);
+    const isSelected = selectedTransaction === data.id;
+    const isTransactionSeen = data.seen;
+    useEffect(() => {
+        setIsConfirmDelete(false)
+    }, [isSelected, isTransactionSeen])
+    
+    const handleClick = () => updateSelectedTransaction(data.id);
+    const Icon = CategoriesMap.get(data.category.name)?.icon ?? Category.Unknown.icon;
+    const isBottomBorderShown = (!data.isFirst || isAbsoluteFirst) && !isSelected;
     const { patchTransaction, isLoading: isPatchLoading } 
         = usePatchTransaction();
-    const { deleteTransaction, isLoading: isDeleteLoading, isSuccess: isDeleteSuccessful } 
+    const { deleteTransaction, isLoading: isDeleteLoading } 
         = useDeleteTransaction();
     const handleSeeClick = e => {
         e.stopPropagation();
@@ -25,9 +34,9 @@ export const TransactionItem = ({ data, isSelected, isAbsoluteFirst, handleClick
     };
     const handleDeleteClick = e => {
         e.stopPropagation();
-        if (isConfirmDelete) 
+        if (isConfirmDelete)
             deleteTransaction(data.id);
-        else 
+        else
             setIsConfirmDelete(true);
     };
     return (
@@ -55,7 +64,6 @@ export const TransactionItem = ({ data, isSelected, isAbsoluteFirst, handleClick
                         <TransactionRightActions isConfirmDelete={isConfirmDelete}
                             handleClick={handleDeleteClick}
                             isLoading={isDeleteLoading}
-                            isSuccess={isDeleteSuccessful}
                         />
                     </ExpendAnimationHOC>
                 </SlideAnimationHOC>

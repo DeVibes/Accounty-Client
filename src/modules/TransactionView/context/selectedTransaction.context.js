@@ -5,14 +5,10 @@ const SelectedTransactionCtx = createContext(null);
 
 export const SelectedTransactionProvider = ({ children }) => {
     const [selectedTransaction, setSelectedTransaction] = useState(null);
-    const setTr = trId => {
-        setSelectedTransaction(trId === selectedTransaction ? null : trId);
-    }
+    const updateSelectedTransaction = newId => 
+        setSelectedTransaction(newId === selectedTransaction ? null : newId);
     return (
-        <SelectedTransactionCtx.Provider value={{ 
-            selectedTransaction,
-            setTr
-        }}>
+        <SelectedTransactionCtx.Provider value={{selectedTransaction, updateSelectedTransaction}}>
             {children}
         </SelectedTransactionCtx.Provider>
     )

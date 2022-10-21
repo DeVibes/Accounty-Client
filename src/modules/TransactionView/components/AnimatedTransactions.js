@@ -2,21 +2,17 @@ import React from 'react'
 import { motion } from "framer-motion";
 import { TransactionItem } from './TransactionItem';
 
-export const AnimatedTransactions = ({ transactions, selectedTransaction, setTr }) => {
-    return (
-        <motion.ul variants={list} initial="hidden" animate="visible">
-            {transactions.map((tr, index) => 
-                <motion.li variants={item} key={index}>
-                    <TransactionItem data={tr}
-                        handleClick={() => setTr(tr.id)}
-                        isSelected={selectedTransaction === tr.id}
-                        isAbsoluteFirst={index === transactions.length - 1}
-                    />
-                </motion.li>   
-            )}
-        </motion.ul>
-    );
-};
+export const AnimatedTransactions = ({ transactions }) => (
+    <motion.ul variants={list} initial="hidden" animate="visible">
+        {transactions.map((tr, index) => 
+            <motion.li variants={item} key={index}>
+                <TransactionItem data={tr}
+                    isAbsoluteFirst={index === transactions.length - 1}
+                />
+            </motion.li>   
+        )}
+    </motion.ul>
+);
 
 const list = {
     visible: { 
