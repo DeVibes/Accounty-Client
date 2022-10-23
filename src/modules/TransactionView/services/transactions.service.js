@@ -1,10 +1,18 @@
+import { logArray } from "../../../utils/logger";
+
+const formatDates = transactions => 
+    transactions.map(tr => {
+        return {...tr, date: new Date(removeZ(tr.date))};
+    });
+
 const sortTransactionsByDate = (transactions, isDesc = false) => {
-    const compareFn = isDesc ? (a, b) => new Date(b.date) - new Date(a.date) :
-        (a, b) => new Date(a.date) - new Date(b.date);
+    const compareFn = isDesc ? (a, b) => new Date(removeZ(b.date)) - new Date(removeZ(a.date)) :
+        (a, b) => new Date(removeZ(a.date)) - new Date(removeZ(b.date));
     return transactions.sort(compareFn);
 }
 
 const sliceTimeFromDateString = dateString => dateString?.slice(0, 10);
+const removeZ = dateString => dateString?.slice(0, -1);
 
 const calculateDailySpent = transactions => {
     transactions.reverse();
@@ -26,6 +34,7 @@ const calculateDailySpent = transactions => {
         dailySum = 0;
         return newTr;
     });
+    logArray(modifiedTransactions)
     return modifiedTransactions.reverse();
 };
 
@@ -44,6 +53,7 @@ const markFirstPerDay = transactions => {
 }
 
 export {
+    // format,
     sortTransactionsByDate,
     sliceTimeFromDateString,
     calculateDailySpent,
