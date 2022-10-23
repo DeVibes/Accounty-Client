@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { deleteTransactionRequest, fetchTransactionsRequest, patchTransactionRequest, postTransactionRequest } from '../api/transactions.api';
 import { logArray } from '../../../utils/logger';
 import { QueryKeys } from '../../../utils/ReactQuery';
-import { calculateDailySpent, sortTransactionsByDate, markFirstPerDay, removeZFromDateStrings } from '../services/transactions.service';
+import { calculateDailySpent, sortTransactionsByDate, markFirstPerDay, formatDates } from '../services/transactions.service';
 
 export const useFetchTransactions = () => {
     const { data, isLoading, isSuccess } = useQuery(QueryKeys.FETCH_TRANSACTIONS, 
@@ -61,8 +61,8 @@ export const usePatchTransaction = () => {
 };
 
 const manipulateTransactions = transactions => {
-    // const formatedDateTransactions = formatDates(transactions);
-    const sortedTransactions = sortTransactionsByDate(transactions, true);
+    const formatedDateTransactions = formatDates(transactions);
+    const sortedTransactions = sortTransactionsByDate(formatedDateTransactions, true);
     const calculatedTransactions = calculateDailySpent(sortedTransactions);
     const markedTransactions = markFirstPerDay(calculatedTransactions);
     logArray(markedTransactions);
