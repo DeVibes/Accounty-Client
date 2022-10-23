@@ -65,5 +65,6 @@ const manipulateTransactions = transactions => {
     const sortedTransactions = sortTransactionsByDate(transactions, true);
     const calculatedTransactions = calculateDailySpent(sortedTransactions);
     const markedTransactions = markFirstPerDay(calculatedTransactions);
+    logArray(markedTransactions);
     return markedTransactions;
 }

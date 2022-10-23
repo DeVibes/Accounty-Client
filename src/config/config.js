@@ -1,8 +1,9 @@
 export const Environment = {
-    LOCAL: 0,
-    PROD: 1
+    LOCAL: "development",
+    QA: "qa",
+    PROD: "prod"
 };
-const env = process.env.NODE_ENV === "development" ? Environment.LOCAL : Environment.PROD;
+const env = process.env.NODE_ENV;
 const apiRouteLocal = process.env.REACT_APP_API_LOCAL;
 const apiRouteQA = process.env.REACT_APP_API;
 const apiRoute = env === Environment.LOCAL ? apiRouteLocal : apiRouteQA
