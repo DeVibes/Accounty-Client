@@ -49,7 +49,7 @@ export const TransactionItem = ({ data, isAbsoluteFirst }) => {
                 onClick={handleClick}
             >
                 <SlideAnimationHOC trigger={isSelected} elementWidth={56} 
-                    direction="right" className="flex"
+                    direction="right" className="flex w-1/2"
                 >
                     <TransactionLeftActions isTransactionSeen={isTransactionSeen} 
                         handleClick={handleSeeClick}
