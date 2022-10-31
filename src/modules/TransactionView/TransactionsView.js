@@ -8,7 +8,7 @@ export const TransactionsView = () => {
     const { transactions, isLoading } = useFetchTransactions();
     return (
         <SelectedTransactionProvider>
-            <section className='container p-4 h-full flex flex-col pr-0 relative'>
+            <section className='container p-4 pr-0 overflow-hidden flex flex-col'>
                 <TransactionsHeader/>
                 <TransactionsList transactions={transactions} isLoading={isLoading}/>
             </section>

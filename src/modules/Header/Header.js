@@ -5,7 +5,7 @@ import { useRouting } from '../Router/hooks/routing.hook';
 export const Header = () => {
   const { pageTitle, isBackBtnShown, goBack } = useRouting();
   return (
-    <header className='text-slate-300 w-full px-4 pt-8 pb-2 relative'>
+    <header className='text-slate-300 w-full px-4 pt-5 pb-2'>
       {isBackBtnShown && (
       <span>
         <LeftArrow size={25} className='inline cursor-pointer' onClick={goBack}/>

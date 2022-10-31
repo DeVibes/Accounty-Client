@@ -3,11 +3,6 @@
 @tailwind utilities;
 
 #root {
-    max-height: 100vh;
-    height: 100vh;
     margin: 0;
     background-color: #1a1b26;
-    position: relative;
-    display: flex;
-    flex-direction: column;
 }

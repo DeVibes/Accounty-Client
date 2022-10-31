@@ -4,7 +4,7 @@ import { AppPages } from '../Router/pages';
 import { FooterIcon } from './components/FooterIcon';
 
 const footerClasses = `w-full bg-[#24283b] 
-    rounded-t-xl p-4 flex justify-around relative`;
+    rounded-t-xl p-2 flex justify-around items-center h-16`;
 
 export const Footer = () => {
     return (
