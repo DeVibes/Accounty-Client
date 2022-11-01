@@ -1,5 +1,8 @@
 export { CgPill as BodySoulIcon } from 'react-icons/cg'
-export { IoAddOutline as PlusIcon } from 'react-icons/io5';
+export { IoAddOutline as PlusIcon,
+    IoTrendingUp as IncomeLabel,
+    IoTrendingDown as OutcomeLabel
+} from 'react-icons/io5';
 export { MdOutlineDeleteOutline as DeleteIcon, 
     MdOutlineFastfood as FoodIcon, 
     MdDashboard as DashboardIcon 
