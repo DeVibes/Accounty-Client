@@ -1,13 +1,15 @@
 import React from 'react';
 import { BalanceView } from '../../modules/PaymentsView/BalanceView';
+import { calculateTotalSpentAndIncome } from '../../modules/PaymentsView/services/transactions.service';
 import { TransactionsView } from '../../modules/TransactionView';
 import { useFetchTransactions } from '../../modules/TransactionView/hooks/transactions.hook';
 
 export const Wallet = () => {
     const { transactions, isLoading } = useFetchTransactions();
+	const { total, income } = calculateTotalSpentAndIncome(transactions);
 	return (
 		<>
-			<BalanceView transactions={transactions} isLoading={isLoading}/>
+			<BalanceView total={total} income={income} isLoading={isLoading}/>
 			<TransactionsView transactions={transactions} isLoading={isLoading}/>
 		</>
 	);
