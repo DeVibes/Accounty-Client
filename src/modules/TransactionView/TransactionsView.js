@@ -6,7 +6,7 @@ import { SelectedTransactionProvider } from './context/selectedTransaction.conte
 export const TransactionsView = ({ transactions, isLoading }) => {
     return (
         <SelectedTransactionProvider>
-            <section className='container p-4 pr-0 overflow-hidden flex flex-col'>
+            <section className='container py-2 pr-0 overflow-hidden flex flex-col'>
                 <TransactionsHeader/>
                 <TransactionsList transactions={transactions} isLoading={isLoading}/>
             </section>

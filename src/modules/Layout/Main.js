@@ -2,6 +2,6 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 
 export const Main = () => 
-  <section className='grow overflow-y-hidden flex flex-col'>
+  <main className='grow overflow-y-hidden flex flex-col px-4 py-2'>
     <Outlet />
-  </section>;
+  </main>;

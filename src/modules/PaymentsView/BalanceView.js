@@ -4,7 +4,7 @@ import { BalanceCardLoader } from './components/BalanceCardLoader';
 
 export const BalanceView = ({ isLoading, total, income }) => {
     return (
-        <section className='container p-4 pb-0 h-56 relative'>
+        <section className='container pb-2 h-56 relative'>
         {isLoading ? 
             <BalanceCardLoader/> :
             (
