@@ -17,9 +17,12 @@ export const TransactionForm = ({ closePopup }) => {
 	});
 	const updateCategoryDefault = () => reset({ categoryId: categories[0]?.id });
 	const updatePaymentDefault = () => reset({ paymentTypeId: paymentTypes[0]?.id });
-	const { categories, isLoading: isCatLoading } = useFetchCategories(updateCategoryDefault);
-	const { paymentTypes, isLoading: isPayLoading } = useFetchPaymentTypes(updatePaymentDefault);
+	const { categories, isLoading: isCatLoading, isError: isCatError } 
+		= useFetchCategories(updateCategoryDefault);
+	const { paymentTypes, isLoading: isPayLoading, isError: isPayError } 
+		= useFetchPaymentTypes(updatePaymentDefault);
 	const isFormLoading = isCatLoading || isPayLoading;
+	const isFormError = isCatError || isPayError;
 	const onSuccessfulSubmit = () => {
 		setTimeout(() => {
 			closePopup();
@@ -54,9 +57,8 @@ export const TransactionForm = ({ closePopup }) => {
 				{errors.date && <ErrorMsg msg="Please enter date"/>}
 			</div>
 			<div className="col-span-2 mt-2">
-				<SubmitButton state={{ isLoading, isSuccess }} isFormLoading={isFormLoading}/>
+				<SubmitButton state={{ isLoading, isSuccess }} isFormLoading={isFormLoading} isFormError={isFormError}/>
 			</div>
 		</form>
 	);
 };
-

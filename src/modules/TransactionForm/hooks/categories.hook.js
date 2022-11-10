@@ -4,11 +4,11 @@ import { QueryKeys } from "../../../utils/ReactQuery"
 import { fetchCategories } from "../api/categories.api"
 
 export const useFetchCategories = callback => {
-    const { data, isLoading } = useQuery(QueryKeys.FETCH_CATEGOIRES, fetchCategories, {
+    const { data, isLoading, isError } = useQuery(QueryKeys.FETCH_CATEGOIRES, fetchCategories, {
         refetchOnWindowFocus: false,
         onSuccess: callback
     });
     let categories = data ?? [];
     logArray(categories);
-    return { categories, isLoading };
+    return { categories, isLoading, isError };
 };
