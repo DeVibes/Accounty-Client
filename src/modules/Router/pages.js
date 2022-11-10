@@ -1,31 +1,15 @@
-import { DashboardIcon, WalletIcon } from "../../utils/icons";
+import { DashboardIcon, TransactionsIcon, WalletIcon } from "../../utils/icons";
 
-export const PagesDataMap = new Map();
 export class PagesEnum {
-    static Dashboard = new PagesEnum("Dashboard");
-    static Wallet = new PagesEnum("Wallet");
-    constructor(name) {
+    static Dashboard = new PagesEnum("/", "Dashboard", DashboardIcon);
+    static Wallet = new PagesEnum("/wallet", "Wallet", WalletIcon);
+    static Transactions = new PagesEnum("/transactions", "Transactions History", TransactionsIcon);
+    constructor(path, name, icon) {
+        this.path = path
         this.name = name;
+        this.icon = icon;
     }
     toString() {
         return this.name;
     }
-}
-export const AppPages = [
-    {
-        name: PagesEnum.Dashboard.toString(),
-        value: 0,
-        path: "/",
-        icon: DashboardIcon
-    },
-    {
-        name: PagesEnum.Wallet.toString(),
-        value: 1,
-        path: "/wallet",
-        icon: WalletIcon
-    }
-];
-
-AppPages.forEach(pageData => {
-    PagesDataMap.set(pageData.path, pageData);
-});
+};

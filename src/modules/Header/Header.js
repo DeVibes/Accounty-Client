@@ -11,7 +11,7 @@ export const Header = () => {
         <LeftArrow size={25} className='inline cursor-pointer' onClick={goBack}/>
       </span>
       )}
-      <span className='absolute -translate-x-1/2 left-1/2 font-bold'>{pageTitle}</span>
+      <span className='absolute -translate-x-1/2 left-1/2 font-bold text-xl'>{pageTitle}</span>
     </header>
   );
 };

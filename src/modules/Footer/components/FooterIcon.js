@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-export const FooterIcon = ({ props, size, onItemClick }) => {
-    const { path, icon: Icon } = props;
+export const FooterIcon = ({ path, icon: Icon, size }) => {
     return (
         <NavLink 
             to={path}

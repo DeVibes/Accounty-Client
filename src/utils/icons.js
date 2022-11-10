@@ -15,7 +15,8 @@ export { GrClose as CloseIcon,
 } from 'react-icons/gr';
 export { BsArrowLeft as LeftArrow, 
     BsFillQuestionSquareFill as UnknownIcon,
-    BsHouseDoor as HouseIcon
+    BsHouseDoor as HouseIcon, 
+    BsEyeFill as QuickIcon
 } from 'react-icons/bs'
 export { HiOutlineShoppingBag as BagIcon } from "react-icons/hi";
 export { AiOutlineCar as CarIcon,
@@ -23,3 +24,5 @@ export { AiOutlineCar as CarIcon,
     AiFillEyeInvisible as UnseenIcon 
 } from "react-icons/ai";
 export { FaRegMoneyBillAlt as IncomeIcon } from 'react-icons/fa'
+export { RiFileList3Line  as TransactionsIcon } from 'react-icons/ri'
+export { TbFaceIdError as ErrorIcon } from 'react-icons/tb'

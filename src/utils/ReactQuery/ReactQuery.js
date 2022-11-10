@@ -10,3 +10,13 @@ export const ReactQuery = ({ children }) => {
     </QueryClientProvider>
   );
 };
+
+export class ReactQueryStatus {
+  static IsLoading = new ReactQueryStatus('loading');
+  static IsError = new ReactQueryStatus('error');
+  static IsSuccess = new ReactQueryStatus('success');
+  static IsIdle = new ReactQueryStatus('idle');
+  constructor(state) {
+    this.state = state;
+  }
+} 

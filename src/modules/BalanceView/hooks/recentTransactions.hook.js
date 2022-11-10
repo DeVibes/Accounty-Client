@@ -5,7 +5,7 @@ import { fetchTransactionsRequest } from "../../TransactionView/api/transactions
 import { calculateTotalSpentAndIncome } from "../services/transactions.service";
 
 export const useFetchRecentTransactions = () => {
-    const { data, isLoading } = useQuery(QueryKeys.FETCH_TRANSACTIONS, 
+    const { data, isLoading, isError } = useQuery(QueryKeys.FETCH_TRANSACTIONS, 
         fetchTransactionsRequest,
         {
             refetchOnWindowFocus: false,
@@ -16,5 +16,5 @@ export const useFetchRecentTransactions = () => {
     logArray(transactions);
     log(total);
     log(income);
-    return { transactions, isLoading, total, income };
+    return { transactions, isLoading, isError, total, income };
 } 
