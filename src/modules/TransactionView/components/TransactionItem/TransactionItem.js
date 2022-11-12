@@ -48,7 +48,7 @@ export const TransactionItem = ({ data, isAbsoluteFirst }) => {
                 ${isBottomBorderShown && "border-b-2 border-slate-800"}`}
                 onClick={handleClick}
             >
-                <SlideAnimationHOC trigger={isSelected} elementWidth={56} 
+                <SlideAnimationHOC trigger={isSelected} elementWidth={55} 
                     direction="right" className="flex w-1/2"
                 >
                     <TransactionLeftActions isTransactionSeen={isTransactionSeen} 
@@ -58,7 +58,7 @@ export const TransactionItem = ({ data, isAbsoluteFirst }) => {
                     <TransactionCategoryIcon isTransactionSeen={isTransactionSeen} icon={Icon}/>
                     <TransactionLeftData desc={data.description} store={data.store}/>
                 </SlideAnimationHOC>
-                <SlideAnimationHOC trigger={isSelected} elementWidth={isConfirmDelete ? 80 : 56} direction="left" className="flex">
+                <SlideAnimationHOC trigger={isSelected} elementWidth={isConfirmDelete ? 80 : 57} direction="left" className="flex">
                     <ExpendAnimationHOC trigger={isConfirmDelete} className={`flex`}>
                         <TransactionRightData price={data.price} paymentName={data.paymentType.name}/>
                         <TransactionRightActions isConfirmDelete={isConfirmDelete}
