@@ -6,8 +6,8 @@ export const useRouting = () => {
     const navigate = useNavigate();
     const pageData = getPageDataByPath(pathname);
     const isBackBtnShown = pageData.name !== PagesEnum.Dashboard.name;
-    const isWalletPage = pageData.name !== PagesEnum.Wallet.name;
-    const isTransactionsPage = pageData.name !== PagesEnum.Transactions.name;
+    const isWalletPage = pageData.name === PagesEnum.Wallet.name;
+    const isTransactionsPage = pageData.name === PagesEnum.Transactions.name;
     const api = {
         goBack: () => navigate(-1)
     }

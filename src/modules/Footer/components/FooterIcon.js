@@ -11,8 +11,8 @@ export const FooterIcon = ({ path, icon: Icon, size }) => {
                 return (
                     <Icon
                         size={size}
-                        className={`hover:fill-[#7aa2f7] transition ease-in-out delay-150 
-                        hover:-translate-y-1 hover:scale-125 ${iconClasses}`}
+                        className={`transition ease-in-out delay-150 
+                        ${iconClasses}`}
                     />
                 );
             }}

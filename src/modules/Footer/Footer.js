@@ -16,13 +16,13 @@ export const Footer = () => {
             <FooterIcon
                 path="/wallet"
                 icon={WalletIcon}
-                size={30} 
+                size={25} 
             />
-            {/* <FooterIcon
+            <FooterIcon
                 path="/transactions"
                 icon={TransactionsIcon}
-                size={30} 
-            /> */}
+                size={25} 
+            />
         </footer>
     );
 };

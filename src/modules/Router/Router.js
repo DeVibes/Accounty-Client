@@ -13,7 +13,7 @@ export const Router = () => {
 					{/* <Route path={"/"} element={<Dashboard/>}/> */}
 					<Route path={"/"} element={<Wallet/>}/>
 					<Route path={"/wallet"} element={<Wallet/>}/>
-					{/* <Route path={"/transactions"} element={<Transactions/>}/> */}
+					<Route path={"/transactions"} element={<Transactions/>}/>
 				</Route>
 			</Routes>
 		</BrowserRouter>
