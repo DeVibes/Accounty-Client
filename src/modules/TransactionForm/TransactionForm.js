@@ -25,10 +25,13 @@ export const TransactionForm = ({ closePopup }) => {
 	const isFormError = isCatError || isPayError;
 	const onSuccessfulSubmit = () => {
 		setTimeout(() => {
+			queryReset();
 			closePopup();
-		}, 1500);
+		}, MODAL_TIMEOUT);
+		reset();
 	}
-	const { postTransaction, isLoading, isSuccess } = usePostTransaction(onSuccessfulSubmit);
+	const { postTransaction, isLoading: isPostLoading, isSuccess: isPostSuccess, reset: queryReset } 
+		= usePostTransaction(onSuccessfulSubmit);
 	const onSubmit = handleSubmit(postTransaction);
 	return (
 		<form onSubmit={onSubmit} 
@@ -57,8 +60,10 @@ export const TransactionForm = ({ closePopup }) => {
 				{errors.date && <ErrorMsg msg="Please enter date"/>}
 			</div>
 			<div className="col-span-2 mt-2">
-				<SubmitButton state={{ isLoading, isSuccess }} isFormLoading={isFormLoading} isFormError={isFormError}/>
+				<SubmitButton buttonState={{ isPostLoading, isPostSuccess, isFormError, isFormLoading }}/>
 			</div>
 		</form>
 	);
 };
+
+const MODAL_TIMEOUT = 1000;
