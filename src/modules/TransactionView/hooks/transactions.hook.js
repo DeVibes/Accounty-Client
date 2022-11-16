@@ -3,13 +3,13 @@ import { deleteTransactionRequest, fetchTransactionsRequest, patchTransactionReq
 import { logArray } from '../../../utils/logger';
 import { QueryKeys } from '../../../utils/ReactQuery';
 import { manipulateTransactions } from '../services/transactions.service';
+import { useTransactionsFilters } from '../context/transactionsFilter.context';
+import { getTimeFrame } from '../../BalanceView/services/transactions.service';
 
 export const useFetchTransactions = () => {
-    const { data, isLoading, isSuccess } = useQuery(QueryKeys.FETCH_TRANSACTIONS, 
-        fetchTransactionsRequest,
-        {
-            refetchOnWindowFocus: false,
-        }
+    const { filters } = useTransactionsFilters();
+    const { data, isLoading, isError, isSuccess } = useQuery([QueryKeys.FETCH_TRANSACTIONS, filters],
+        () => fetchTransactionsRequest(filters)
     );
     let transactions = data ?? [];
     if (isSuccess && transactions.length !== 0) {
@@ -22,7 +22,7 @@ export const useFetchTransactions = () => {
 
 export const usePostTransaction = callback => {
     const queryClient = useQueryClient();
-    const { mutateAsync, isLoading, isSuccess } = useMutation(postTransactionRequest, {
+    const { mutateAsync, isLoading, isSuccess, reset } = useMutation(postTransactionRequest, {
         onSuccess: () => {
             callback();
             queryClient.invalidateQueries(QueryKeys.FETCH_TRANSACTIONS);
@@ -31,7 +31,7 @@ export const usePostTransaction = callback => {
     const postTransaction = async newTransaction => {
 		await mutateAsync(newTransaction);
     };
-    return { postTransaction, isLoading, isSuccess };
+    return { postTransaction, isLoading, isSuccess, reset };
 }
 
 export const useDeleteTransaction = () => {

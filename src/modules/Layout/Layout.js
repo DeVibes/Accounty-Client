@@ -1,24 +1,28 @@
 import React from 'react';
-import Feedback from '../../shared/components/Feedback';
 import { Footer } from '../Footer';
 import { Header } from '../Header';
-import Popup from '../../shared/components/Popup';
 import { TransactionForm } from '../TransactionForm/TransactionForm';
-import { usePopupContext } from '../../shared/context/popup.context';
-import { Main } from './Main';
+import { Main } from './components/Main';
+import { Modal, ModalContent } from '../Modal/Modal';
+import { useModalContext } from '../Modal/context/modal.context';
+import { FilterForm } from '../FilterForm/FilterForm';
 
 export const Layout = () => {
-  const { isPopupOpen, isFeedbackOpen, closePopup, hideFeedback } = usePopupContext();
+  const { isModalOpen, modalContent, closeModal } = useModalContext();
   return (
-    <div className='h-screen flex flex-col'>
-      <Popup isVisible={isPopupOpen} handleClose={closePopup}>
-        <TransactionForm closePopup={closePopup}/>
-      </Popup>
-      <Feedback isVisible={isFeedbackOpen} handleClose={hideFeedback}/>
+    <div className='h-screen flex flex-col relative'>
+      <Modal isOpen={isModalOpen} closeModal={closeModal} elementHeight={600}>
+        {modalContent === ModalContent.ADD_TRANSACTION ? (
+          <TransactionForm closePopup={closeModal}/>
+        ): modalContent === ModalContent.FILTER ? <FilterForm handleClose={closeModal}/> : null}
+      </Modal>
       <Header/>
       <Main/>
       <Footer/>
     </div>
   );
 };
+
+
+
 

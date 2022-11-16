@@ -1,7 +1,13 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    }
+  }
+});
 
 export const ReactQuery = ({ children }) => {
   return (
@@ -11,12 +17,20 @@ export const ReactQuery = ({ children }) => {
   );
 };
 
-export class ReactQueryStatus {
-  static IsLoading = new ReactQueryStatus('loading');
-  static IsError = new ReactQueryStatus('error');
-  static IsSuccess = new ReactQueryStatus('success');
-  static IsIdle = new ReactQueryStatus('idle');
-  constructor(state) {
-    this.state = state;
-  }
-} 
+const QueryKeys = {
+    FETCH_TRANSACTIONS: 'fetchTransactions',
+    FETCH_PAYMENT_TYPES: 'fetchPaymentTypes',
+    FETCH_CATEGOIRES: 'fetchCategories'
+};
+
+const QueryStatus = {
+  LOADING: 'loading',
+  ERROR: 'error',
+  SUCCESS: 'success',
+  IDLE: 'idle'
+}
+
+Object.freeze(QueryKeys);
+Object.freeze(QueryStatus);
+
+export { QueryKeys, QueryStatus };

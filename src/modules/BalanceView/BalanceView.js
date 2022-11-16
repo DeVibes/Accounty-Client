@@ -5,13 +5,13 @@ import { BalanceCardLoader } from './components/BalanceCardLoader';
 
 export const BalanceView = ({ isLoading, total, income, isError }) => {
     return (
-        <section className='container pb-2 h-1/3 relative'>
+        <section className='container pb-2 relative'>
         {isLoading ? 
             <BalanceCardLoader/> :
             isError ? 
                 <BalanceViewError/> :
                 (
-                    <div className="bg-slate-800 h-full rounded-xl flex flex-col justify-around">
+                    <div className="bg-slate-800 py-2 h-full rounded-xl flex flex-col justify-around gap-4">
                         <span className='text-gray-500 text-lg text-center'>My Balance</span>
                         <span className='text-gray-200 text-5xl text-center'>{income - total} ₪</span>
                         <div className="w-full flex">
