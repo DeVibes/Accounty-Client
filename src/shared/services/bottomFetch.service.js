@@ -4,7 +4,7 @@ export const fetchOnBottom = (elementRef, paginationAPI) => {
         if (!elementRef.current)
             return;     
         const { scrollTop, scrollHeight, clientHeight } = elementRef.current;
-        if (hasNextPage && !isFetchingNextPage && scrollTop + clientHeight === scrollHeight)
+        if (hasNextPage && !isFetchingNextPage && scrollTop + clientHeight >= scrollHeight)
             fetchNextPage();
     };
 }
