@@ -1,15 +1,13 @@
 import { apiRoute } from "../../../config";
-import { log } from "../../../utils/logger";
 
-export const fetchTransactionsRequest = async filters => {
+export const fetchTransactionsRequest = async (filters, page) => {
     const { fromDate, toDate } = filters;
-    let queryString = "?";
-    if (fromDate != null && toDate != null ) {
-        queryString += `fromDate=${fromDate}&toDate=${toDate}`;
+    let queryString = `?page=${page}`;
+    if (fromDate != null && toDate != null) {
+        queryString += `&fromDate=${fromDate}&toDate=${toDate}`;
     }
     const response = await fetch(apiRoute+ "/transactions" + queryString);
-    const transactions = await response.json();
-    return transactions;
+    return await response.json();
 };
 
 export const postTransactionRequest = async transaction => {

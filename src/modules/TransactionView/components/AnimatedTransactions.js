@@ -1,15 +1,19 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { motion } from "framer-motion";
 import { TransactionItem } from './TransactionItem';
 
-export const AnimatedTransactions = ({ transactions }) => (
+export const AnimatedTransactions = ({ pagedTransactions }) => ( 
     <motion.ul variants={list} initial="hidden" animate="visible">
-        {transactions.map((tr, index) => 
-            <motion.li variants={item} key={index}>
-                <TransactionItem data={tr}
-                    isAbsoluteFirst={index === transactions.length - 1}
-                />
-            </motion.li>   
+        {pagedTransactions.map((page, index) => 
+            <Fragment key={index}>
+                {page.transactions.map(tr => (
+                    <motion.li variants={item} key={tr.id}>
+                        <TransactionItem data={tr}
+                            isAbsoluteFirst={index === page.transactions.length - 1}
+                        />
+                    </motion.li>
+                ))}
+            </Fragment>
         )}
     </motion.ul>
 );

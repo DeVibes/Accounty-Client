@@ -6,8 +6,6 @@ const TransactionsFiltersCtx = createContext(null);
 export const TransactionsFilterProvider = ({ children }) => {
     const [filters, setFilters] = useState({});
     const setDateRange = (fromDate, toDate) => {
-        // if (!fromDate || !toDate)
-        //     return;
         setFilters({
             ...filters,
             fromDate,

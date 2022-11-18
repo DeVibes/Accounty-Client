@@ -24,7 +24,7 @@ export const Wallet = () => {
 		<>
 			<BalanceView total={total} income={income} isLoading={isLoading} isError={isError}/>
 			<ActionBar/>
-			<TransactionsView transactions={transactions} isLoading={isLoading} isError={isError}/>
+			<TransactionsView/>
 		</>
 	);
 };

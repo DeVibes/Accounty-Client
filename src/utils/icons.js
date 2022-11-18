@@ -23,7 +23,8 @@ export { HiOutlineShoppingBag as BagIcon,
 } from "react-icons/hi";
 export { AiOutlineCar as CarIcon,
     AiFillEye as SeenIcon,
-    AiFillEyeInvisible as UnseenIcon 
+    AiFillEyeInvisible as UnseenIcon ,
+    AiOutlineDownCircle as DownIcon
 } from "react-icons/ai";
 export { FaRegMoneyBillAlt as IncomeIcon } from 'react-icons/fa'
 export { RiFileList3Line  as TransactionsIcon } from 'react-icons/ri'
