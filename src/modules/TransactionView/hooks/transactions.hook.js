@@ -60,6 +60,7 @@ export const usePostTransaction = callback => {
         onSuccess: () => {
             callback();
             queryClient.invalidateQueries(QueryKeys.FETCH_TRANSACTIONS);
+            queryClient.invalidateQueries(QueryKeys.FETCH_BALANCE);
         }
     });
     const postTransaction = async newTransaction => {
@@ -73,6 +74,7 @@ export const useDeleteTransaction = () => {
     const { mutateAsync, isLoading, isSuccess } = useMutation(deleteTransactionRequest, {
         onSuccess: () => {
             queryClient.invalidateQueries(QueryKeys.FETCH_TRANSACTIONS);
+            queryClient.invalidateQueries(QueryKeys.FETCH_BALANCE);
         }
     });
     const deleteTransaction = async transactionId => {

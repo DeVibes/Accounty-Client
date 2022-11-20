@@ -22,7 +22,8 @@ export const ReactQuery = ({ children }) => {
 const QueryKeys = {
     FETCH_TRANSACTIONS: 'fetchTransactions',
     FETCH_PAYMENT_TYPES: 'fetchPaymentTypes',
-    FETCH_CATEGOIRES: 'fetchCategories'
+    FETCH_CATEGOIRES: 'fetchCategories',
+    FETCH_BALANCE: 'fetchBalance'
 };
 
 const QueryStatus = {
