@@ -9,7 +9,9 @@ export const useRouting = () => {
     const isWalletPage = pageData.name === PagesEnum.Wallet.name;
     const isTransactionsPage = pageData.name === PagesEnum.Transactions.name;
     const api = {
-        goBack: () => navigate(-1)
+        goBack: () => navigate(-1),
+        redirectToMain: () => navigate("/Wallet"),
+        redirectToLogin: () => navigate("/login")
     }
     return { pageData, isBackBtnShown, isWalletPage, isTransactionsPage, ...api }
 }
@@ -23,6 +25,6 @@ const getPageDataByPath = pathName => {
         case PagesEnum.Transactions.path:
             return PagesEnum.Transactions;
         default:
-            return null;
+            return "";
     }
 };

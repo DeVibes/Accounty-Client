@@ -4,6 +4,7 @@ import { getTimeFrame } from '../../modules/BalanceView/services/transactions.se
 import { TransactionsView } from '../../modules/TransactionView';
 import { ActionBar } from './components/ActionBar';
 import { useTransactionsFilters } from '../../modules/TransactionView/context/transactionsFilter.context';
+import { PrivateRouteHOC } from '../../modules/Router/components/PrivateRouteHOC';
 
 export const Wallet = () => {
 	const { setDateRange } = useTransactionsFilters();
@@ -18,10 +19,10 @@ export const Wallet = () => {
 	}, []);
 	
 	return (
-		<>
+		<PrivateRouteHOC>
 			<BalanceView />
 			<ActionBar/>
 			<TransactionsView/>
-		</>
+		</PrivateRouteHOC>
 	);
 };

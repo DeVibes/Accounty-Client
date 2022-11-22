@@ -7,20 +7,26 @@ import { Router } from './modules/Router';
 import { PopupProvider } from './shared/context/popup.context';
 import { ModalProvider } from './modules/Modal/context/modal.context';
 import { TransactionsFilterProvider } from './modules/TransactionView/context/transactionsFilter.context';
+import { GoogleAuth } from './utils/Auth/GoogleAuth';
+import { UserProvider } from './shared/context/user.context';
 
 const App = () => {
 	return (
-		<ModalProvider>
-			<PopupProvider>
-				<TransactionsFilterProvider>
-					<ReactQuery>
-						<DesktopViewRestrictor>
-							<Router/>
-						</DesktopViewRestrictor>
-					</ReactQuery>
-				</TransactionsFilterProvider>
-			</PopupProvider>
-		</ModalProvider>
+		<UserProvider>
+			<GoogleAuth>
+				<ModalProvider>
+					<PopupProvider>
+						<TransactionsFilterProvider>
+							<ReactQuery>
+								<DesktopViewRestrictor>
+									<Router/>
+								</DesktopViewRestrictor>
+							</ReactQuery>
+						</TransactionsFilterProvider>
+					</PopupProvider>
+				</ModalProvider>
+			</GoogleAuth>
+		</UserProvider>
 	);
 };
 

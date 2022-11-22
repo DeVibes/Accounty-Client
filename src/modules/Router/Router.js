@@ -4,6 +4,7 @@ import { Dashboard } from '../../pages/Dashboard';
 import { Layout } from '../Layout';
 import { Wallet } from '../../pages/Wallet';
 import { Transactions } from '../../pages/Transactions';
+import { LoginPage } from '../../pages/Login/';
 
 export const Router = () => {
 	return (
@@ -15,6 +16,7 @@ export const Router = () => {
 					<Route path={"/wallet"} element={<Wallet/>}/>
 					<Route path={"/transactions"} element={<Transactions/>}/>
 				</Route>
+				<Route path={"/login"} element={<LoginPage/>}/>
 			</Routes>
 		</BrowserRouter>
 	);

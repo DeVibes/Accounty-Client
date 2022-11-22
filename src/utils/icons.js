@@ -29,3 +29,7 @@ export { AiOutlineCar as CarIcon,
 export { FaRegMoneyBillAlt as IncomeIcon } from 'react-icons/fa'
 export { RiFileList3Line  as TransactionsIcon } from 'react-icons/ri'
 export { TbFaceIdError as ErrorIcon } from 'react-icons/tb'
+export { 
+    FcMoneyTransfer as LoginIcon,
+    FcGoogle as GoogleIcon
+} from 'react-icons/fc'

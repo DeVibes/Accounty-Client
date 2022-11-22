@@ -8,21 +8,17 @@ import { useModalContext } from '../Modal/context/modal.context';
 import { FilterForm } from '../FilterForm/FilterForm';
 
 export const Layout = () => {
-  const { isModalOpen, modalContent, closeModal } = useModalContext();
-  return (
-    <div className='h-screen flex flex-col relative'>
-      <Modal isOpen={isModalOpen} closeModal={closeModal} elementHeight={600}>
-        {modalContent === ModalContent.ADD_TRANSACTION ? (
-          <TransactionForm closePopup={closeModal}/>
-        ): modalContent === ModalContent.FILTER ? <FilterForm handleClose={closeModal}/> : null}
-      </Modal>
-      <Header/>
-      <Main/>
-      <Footer/>
-    </div>
-  );
+	const { isModalOpen, modalContent, closeModal } = useModalContext();
+	return (
+		<div className='h-screen flex flex-col relative'>
+		<Modal isOpen={isModalOpen} closeModal={closeModal} elementHeight={600}>
+			{modalContent === ModalContent.ADD_TRANSACTION ? (
+			<TransactionForm closePopup={closeModal}/>
+			): modalContent === ModalContent.FILTER ? <FilterForm handleClose={closeModal}/> : null}
+		</Modal>
+		<Header/>
+		<Main/>
+		<Footer/>
+		</div>
+	);
 };
-
-
-
-
