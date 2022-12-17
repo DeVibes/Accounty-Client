@@ -8,11 +8,15 @@ export const UserProvider = ({ children }) => {
 
     const setUserPic = (picUrl) => setUserData({ ...userData, picUrl });
     const setUserName = (name) => setUserData({ ...userData, name});
+    const setId = (id) => setUserData({ ...userData, id});
+    const setEmail = (email) => setUserData({ ...userData, email});
 
     const api = {
         setUserPic,
         setUserName,
         setUserData,
+        setId,
+        setEmail
     };
 
     return (

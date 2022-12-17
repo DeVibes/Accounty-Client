@@ -16,17 +16,32 @@ export const useAuth = () => {
         redirectToMain();
     };
 
+    const handleLogout = () => {
+        localStorage.clear();
+        setUserData(undefined);
+        redirectToLogin();
+    }
+
     const checkUser = async () => {
+        setIsLoading(true);
         const token = localStorage.getItem("user_token");
         if (!token) {
-            redirectToLogin();
+            setIsLoading(false);
+            handleLogout();
             return;
         }
-        setIsLoading(true);
-        const { picture: picUrl, name } = await getUsersGoogleData(token);
+        const userData = await getUsersGoogleData(token);
+        if (!userData) {
+            setIsLoading(false);
+            handleLogout();
+            return;
+        }
+        const { picture: picUrl, name, id, email } = userData;
         setUserData({
             picUrl, 
-            name   
+            name,
+            id,
+            email   
         })
         setIsLoading(false);
     };
@@ -38,10 +53,12 @@ export const useAuth = () => {
 
     const googleLogin = useGoogleLogin({
         onSuccess: onSuccessfulLogin,
+        onError: redirectToLogin
     })
 
     const api = {
         handleLogin,
+        handleLogout,
         checkUser,
         setIsLoading
     }

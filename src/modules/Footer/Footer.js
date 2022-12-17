@@ -1,5 +1,5 @@
 import React from 'react';
-import { DashboardIcon, TransactionsIcon, WalletIcon } from '../../utils/icons';
+import { DashboardIcon, ProfileIcon, TransactionsIcon, WalletIcon } from '../../utils/icons';
 import { FooterIcon } from './components/FooterIcon';
 
 const footerClasses = `w-full bg-[#24283b] 
@@ -21,6 +21,11 @@ export const Footer = () => {
             <FooterIcon
                 path="/transactions"
                 icon={TransactionsIcon}
+                size={25} 
+            />
+            <FooterIcon
+                path="/profile"
+                icon={ProfileIcon}
                 size={25} 
             />
         </footer>

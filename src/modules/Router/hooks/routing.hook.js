@@ -6,6 +6,7 @@ export const useRouting = () => {
     const navigate = useNavigate();
     const pageData = getPageDataByPath(pathname);
     const isBackBtnShown = pageData.name !== PagesEnum.Dashboard.name;
+    const isProfileShown = pageData.name !== PagesEnum.Profile.name;
     const isWalletPage = pageData.name === PagesEnum.Wallet.name;
     const isTransactionsPage = pageData.name === PagesEnum.Transactions.name;
     const api = {
@@ -13,7 +14,7 @@ export const useRouting = () => {
         redirectToMain: () => navigate("/Wallet"),
         redirectToLogin: () => navigate("/login")
     }
-    return { pageData, isBackBtnShown, isWalletPage, isTransactionsPage, ...api }
+    return { pageData, isBackBtnShown, isProfileShown, isWalletPage, isTransactionsPage, ...api }
 }
 
 const getPageDataByPath = pathName => {
@@ -24,6 +25,8 @@ const getPageDataByPath = pathName => {
             return PagesEnum.Wallet;
         case PagesEnum.Transactions.path:
             return PagesEnum.Transactions;
+        case PagesEnum.Profile.path:
+            return PagesEnum.Profile;
         default:
             return "";
     }

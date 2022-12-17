@@ -1,4 +1,5 @@
 import React from 'react';
+import { ProfilePic } from '../../shared/components/ProfilePic';
 import Spinner from '../../shared/components/Spinner';
 import { useUserDataContext } from '../../shared/context/user.context';
 import { LeftArrow } from '../../utils/icons';
@@ -6,7 +7,7 @@ import { useAuth } from '../LoginView/hook/auth.hook';
 import { useRouting } from '../Router/hooks/routing.hook';
 
 export const Header = () => {
-  const { pageData, isBackBtnShown, goBack } = useRouting();
+  const { pageData, isBackBtnShown, isProfileShown, goBack } = useRouting();
   const { userData } = useUserDataContext();
   const { isLoading } = useAuth();
   return (
@@ -18,16 +19,16 @@ export const Header = () => {
       )}
       <span className='font-bold text-xl'>{pageData.name}</span>
       {isLoading ? 
-        <span className='w-12 h-12 border rounded-xl flex justify-center items-center'>
+        <span className={`w-12 h-12 border rounded-xl flex justify-center items-center 
+          ${isProfileShown ? "" : "invisible"}`}
+        >
           <Spinner/>
-        </span> : (
-        <img src={`${userData?.picUrl}`} 
-          alt="" 
-          width={48} 
-          height={48}
-          className="border rounded-xl"
-        />
-        )}
+        </span> : 
+        <span className={`${isProfileShown ? "" : "invisible"}`}>
+
+          <ProfilePic size={45} picUrl={userData?.picUrl}/>
+        </span>
+      }
     </header>
   );
 };

@@ -20,4 +20,3 @@ export const useSelectedTransaction = () => {
         throw new Error("useSelectedTransaction must be used within the SelectedTransactionProvider");
     return ctx;
 };
-

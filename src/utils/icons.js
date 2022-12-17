@@ -28,8 +28,13 @@ export { AiOutlineCar as CarIcon,
 } from "react-icons/ai";
 export { FaRegMoneyBillAlt as IncomeIcon } from 'react-icons/fa'
 export { RiFileList3Line  as TransactionsIcon } from 'react-icons/ri'
-export { TbFaceIdError as ErrorIcon } from 'react-icons/tb'
+export { 
+    TbFaceIdError as ErrorIcon, 
+    TbLogout as LogoutIcon
+} from 'react-icons/tb'
 export { 
     FcMoneyTransfer as LoginIcon,
     FcGoogle as GoogleIcon
 } from 'react-icons/fc'
+export { ImProfile as ProfileIcon } from 'react-icons/im'
+export { RiAccountCircleLine as FallbackProfileIcon } from 'react-icons/ri'
