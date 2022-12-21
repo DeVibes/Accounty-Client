@@ -11,7 +11,7 @@ export const useRouting = () => {
     const isTransactionsPage = pageData.name === PagesEnum.Transactions.name;
     const api = {
         goBack: () => navigate(-1),
-        redirectToMain: () => navigate("/Wallet"),
+        redirectToMain: () => navigate("/"),
         redirectToLogin: () => navigate("/login")
     }
     return { pageData, isBackBtnShown, isProfileShown, isWalletPage, isTransactionsPage, ...api }
