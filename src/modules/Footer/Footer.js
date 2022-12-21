@@ -8,15 +8,15 @@ const footerClasses = `w-full bg-[#24283b]
 export const Footer = () => {
     return (
         <footer className={footerClasses}>
-            {/* <FooterIcon
-                path="/"
-                icon={DashboardIcon}
-                size={30} 
-            /> */}
             <FooterIcon
-                path="/wallet"
+                path="/"
                 icon={WalletIcon}
                 size={25} 
+            />
+            <FooterIcon
+                path="/dashboard"
+                icon={DashboardIcon}
+                size={30} 
             />
             <FooterIcon
                 path="/transactions"
