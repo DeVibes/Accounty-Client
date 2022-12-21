@@ -23,7 +23,8 @@ const QueryKeys = {
     FETCH_TRANSACTIONS: 'fetchTransactions',
     FETCH_PAYMENT_TYPES: 'fetchPaymentTypes',
     FETCH_CATEGOIRES: 'fetchCategories',
-    FETCH_BALANCE: 'fetchBalance'
+    FETCH_BALANCE: 'fetchBalance',
+    FETCH_TOTAL_BY_CATEGORY: 'fetchTotalByCat'
 };
 
 const QueryStatus = {

@@ -12,11 +12,6 @@ export const Wallet = () => {
 		const { fromDate, toDate } = getTimeFrame();
 		setDateRange(fromDate, toDate);
 	}, []);
-	useEffect(() => {
-		return () => {
-			setDateRange(null);
-		};
-	}, []);
 	
 	return (
 		<PrivateRouteHOC>

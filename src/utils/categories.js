@@ -4,10 +4,11 @@ export const CategoriesMap = new Map();
 export class Category {
     static Unknown = new Category("Unknown", UnknownIcon);
     static Shopping = new Category("Shopping", BagIcon, "#af1b1b");
-    static Car = new Category("Car", CarIcon, "#48240f");
+    static Car = new Category("Car", CarIcon, "#0088FE");
     static EatOut = new Category("EatOut", FoodIcon, "#efff00");
     static House = new Category("House", HouseIcon, "#9d00ff");
     static BodySoul = new Category("Body & Soul", BodySoulIcon, "#3d9b17");
+    static Grocery = new Category("Grocery", BodySoulIcon, "#FFBB28");
     static Income = new Category("Income", IncomeIcon, "#0db5c7");
     constructor(name, icon, color) {
         this.name = name;

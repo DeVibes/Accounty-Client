@@ -12,9 +12,8 @@ export const Router = () => {
 		<BrowserRouter>
 			<Routes>
 				<Route element={<Layout/>}>
-					{/* <Route path={"/"} element={<Dashboard/>}/> */}
 					<Route path={"/"} element={<Wallet/>}/>
-					<Route path={"/wallet"} element={<Wallet/>}/>
+					<Route path={"/dashboard"} element={<Dashboard/>}/>
 					<Route path={"/transactions"} element={<Transactions/>}/>
 					<Route path={"/profile"} element={<Profile/>}/>
 				</Route>
