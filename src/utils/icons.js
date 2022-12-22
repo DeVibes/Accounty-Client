@@ -5,7 +5,8 @@ export { IoAddOutline as PlusIcon,
 } from 'react-icons/io5';
 export { MdOutlineDeleteOutline as DeleteIcon, 
     MdOutlineFastfood as FoodIcon, 
-    MdDashboard as DashboardIcon 
+    MdDashboard as DashboardIcon,
+    MdOutlineLocalGroceryStore as GroceryIcon
 } from 'react-icons/md';
 export { GiConfirmed as ConfirmIcon,
     GiWallet as WalletIcon
