@@ -18,7 +18,7 @@ export { BsArrowLeft as LeftArrow,
     BsHouseDoor as HouseIcon, 
     BsEyeFill as QuickIcon
 } from 'react-icons/bs'
-export { HiOutlineShoppingBag as BagIcon, 
+export { HiOutlineShoppingBag as BagIcon,
     HiOutlineFilter as FilterIcon
 } from "react-icons/hi";
 export { AiOutlineCar as CarIcon,
@@ -30,7 +30,8 @@ export { FaRegMoneyBillAlt as IncomeIcon } from 'react-icons/fa'
 export { RiFileList3Line  as TransactionsIcon } from 'react-icons/ri'
 export { 
     TbFaceIdError as ErrorIcon, 
-    TbLogout as LogoutIcon
+    TbLogout as LogoutIcon,
+    TbReportMoney as BillIcon
 } from 'react-icons/tb'
 export { 
     FcMoneyTransfer as LoginIcon,
@@ -38,3 +39,5 @@ export {
 } from 'react-icons/fc'
 export { ImProfile as ProfileIcon } from 'react-icons/im'
 export { RiAccountCircleLine as FallbackProfileIcon } from 'react-icons/ri'
+export { BiBus as TransportIcon } from 'react-icons/bi'
+export { SlPresent as PresentIcon } from 'react-icons/si'

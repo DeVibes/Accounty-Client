@@ -1,4 +1,4 @@
-import { BagIcon, BodySoulIcon, CarIcon, FoodIcon, HouseIcon, IncomeIcon, UnknownIcon } from "./icons";
+import { BagIcon, BillIcon, BodySoulIcon, CarIcon, FoodIcon, HouseIcon, IncomeIcon, PresentIcon, TransportIcon, UnknownIcon } from "./icons";
 
 export const CategoriesMap = new Map();
 export class Category {
@@ -10,6 +10,9 @@ export class Category {
     static BodySoul = new Category("Body & Soul", BodySoulIcon, "#3d9b17");
     static Grocery = new Category("Grocery", BodySoulIcon, "#FFBB28");
     static Income = new Category("Income", IncomeIcon, "#0db5c7");
+    static Income = new Category("Transaport", TransportIcon, "#BE8D3C");
+    static Income = new Category("Bill", BillIcon, "#BE8D3C");
+    static Income = new Category("Present", PresentIcon, "#3229EE");
     constructor(name, icon, color) {
         this.name = name;
         this.icon = icon;
