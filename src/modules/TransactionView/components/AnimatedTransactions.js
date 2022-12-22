@@ -6,10 +6,10 @@ export const AnimatedTransactions = ({ pagedTransactions }) => (
     <motion.ul variants={list} initial="hidden" animate="visible">
         {pagedTransactions.map((page, index) => 
             <Fragment key={index}>
-                {page.transactions.map(tr => (
+                {page.transactions.map((tr, innerIndex) => (
                     <motion.li variants={item} key={tr.id}>
                         <TransactionItem data={tr}
-                            isAbsoluteFirst={index === page.transactions.length - 1}
+                            isAbsoluteFirst={innerIndex === page.transactions.length - 1}
                         />
                     </motion.li>
                 ))}

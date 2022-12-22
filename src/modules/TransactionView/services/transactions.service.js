@@ -20,7 +20,7 @@ const calculateDailySpent = transactions => {
     const modifiedTransactions = transactions.map((tr, index) => {
         const trDate = new Date(tr.date);
         const isNextTrSameDay = 
-            trDate.getTime() === new Date(transactions[index + 1]?.date).getTime();
+            trDate.getDate() === new Date(transactions[index + 1]?.date).getDate();
         if (tr.price < 0)
             dailySum += tr.price;
         if (isNextTrSameDay) 
@@ -44,7 +44,7 @@ const markFirstPerDay = transactions => {
     const markedTransactions = transactions.map((tr, index) => {
         const trDate = new Date(tr.date);
         const isNextTrSameDay = 
-            trDate.getTime() === new Date(transactions[index + 1]?.date).getTime();
+            trDate.getDate() === new Date(transactions[index + 1]?.date).getDate();
         tr = { ...tr, isFirst };
         isFirst = !isNextTrSameDay;
         return tr;
