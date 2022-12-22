@@ -10,9 +10,9 @@ export class Category {
     static BodySoul = new Category("Body & Soul", BodySoulIcon, "#3d9b17");
     static Grocery = new Category("Grocery", GroceryIcon, "#FFBB28");
     static Income = new Category("Income", IncomeIcon, "#0db5c7");
-    static Income = new Category("Transaport", TransportIcon, "#BE8D3C");
-    static Income = new Category("Bill", BillIcon, "#BE8D3C");
-    static Income = new Category("Present", PresentIcon, "#3229EE");
+    static Transport = new Category("Transaport", TransportIcon, "#BE8D3C");
+    static Bill = new Category("Bill", BillIcon, "#BE8D3C");
+    static Present = new Category("Present", PresentIcon, "#3229EE");
     constructor(name, icon, color) {
         this.name = name;
         this.icon = icon;

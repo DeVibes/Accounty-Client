@@ -38,7 +38,8 @@ export {
     FcMoneyTransfer as LoginIcon,
     FcGoogle as GoogleIcon
 } from 'react-icons/fc'
-export { ImProfile as ProfileIcon } from 'react-icons/im'
+export { ImProfile as ProfileIcon,
+    ImGift as PresentIcon
+} from 'react-icons/im'
 export { RiAccountCircleLine as FallbackProfileIcon } from 'react-icons/ri'
 export { BiBus as TransportIcon } from 'react-icons/bi'
-export { SlPresent as PresentIcon } from 'react-icons/si'
