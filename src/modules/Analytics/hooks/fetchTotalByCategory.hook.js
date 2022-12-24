@@ -1,8 +1,7 @@
 import { useQuery } from "react-query";
 import { QueryKeys } from "../../../utils/ReactQuery";
-import { getTimeFrame } from "../../BalanceView/services/transactions.service";
-import { getTotalByCategory } from "../api/totalByCategory.api";
-import { mapDataForRechartPie } from "../services/chartData.service";
+import { getTotalByCategory } from "../api/analytics.api";
+import { mapDataForRechartPie, getTimeFrame   } from "../services/analytics.service";
 
 export const useFetchTotalByCategory = () => {
     const { fromDate, toDate } = getTimeFrame();
@@ -12,5 +11,5 @@ export const useFetchTotalByCategory = () => {
     );
     if (!isError && !isLoading)
         data = mapDataForRechartPie(data);
-    return { data, isLoading };
+    return { data, isLoading, isError };
 }

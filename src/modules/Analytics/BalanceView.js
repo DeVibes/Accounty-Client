@@ -1,0 +1,44 @@
+import React from 'react'
+import { IncomeLabel, OutcomeLabel } from '../../utils/icons';
+import { useFetchBalance } from './hooks/fetchBalance.hook';
+import { AnalyticsLoader } from './components/AnalyticsLoader';
+import { AnalyticsError } from './components/AnalyticsError';
+
+export const BalanceView = () => {
+    const { income, outcomes, balance, isLoading, isError } = useFetchBalance();
+    return (
+        <section className='flex flex-col h-1/3'>
+        {isLoading ? 
+            <AnalyticsLoader/> :
+            isError ? 
+                <AnalyticsError/> :
+                (
+                    <>
+                        <span className='font-bold text-lg text-slate-300 mb-2'>
+                            My Balance
+                        </span>
+                        <div className="bg-slate-800 h-5/6 rounded-xl flex flex-col justify-around gap-4">
+                            <span className='text-gray-200 text-5xl text-center'>{balance} ₪</span>
+                            <div className="w-full flex">
+                                <div className="w-full text-center flex items-center border-r-2 border-slate-500 pl-7">
+                                    <IncomeLabel size={30} className="text-white"/>
+                                    <div className="pl-3">
+                                        <span className='text-slate-500 text-sm block'>Income</span>
+                                        <span className='text-slate-200 text-xl'>{income}₪</span>
+                                    </div>
+                                </div>
+                                <div className="w-full text-center flex items-center pl-7">
+                                    <OutcomeLabel size={30} className="text-white"/>
+                                    <div className="pl-3">
+                                        <span className='text-slate-500 text-sm block'>Outcomes</span>
+                                        <span className='text-slate-200 text-xl'>{outcomes}₪</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                )
+        }
+        </section>
+    );
+};

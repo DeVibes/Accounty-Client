@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { QueryKeys } from "../../../utils/ReactQuery";
-import { fetchMonthlyBalance } from "../api/balance.api";
-import { useTransactionsFilters } from '../../TransactionView/context/transactionsFilter.context'
+import { useTransactionsFilters } from "../../TransactionView/context/transactionsFilter.context";
+import { fetchMonthlyBalance } from "../api/analytics.api";
 
 export const useFetchBalance = () => {
     const { filters } = useTransactionsFilters();

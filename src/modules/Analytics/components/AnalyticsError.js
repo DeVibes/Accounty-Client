@@ -1,8 +1,6 @@
-import React from 'react';
-import { ErrorIcon } from '../../../utils/icons';
+import { ErrorIcon } from "../../../utils/icons";
 
-
-export const BalanceViewError = () => {
+export const AnalyticsError = () => {
     return (
         <div className="bg-slate-800 h-full rounded-xl flex flex-col justify-center items-center">
             <div>
