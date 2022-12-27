@@ -2,7 +2,7 @@ import { useGoogleLogin } from '@react-oauth/google';
 import { useState } from 'react';
 import { useUserDataContext } from '../../../shared/context/user.context';
 import { useRouting } from '../../Router/hooks/routing.hook';
-import { getUsersGoogleData } from '../api/auth.api';
+import { getAPIAccessToken, getUsersGoogleData } from '../api/auth.api';
 
 export const useAuth = () => {
     const [isLoading, setIsLoading ] = useState(false);
@@ -10,7 +10,7 @@ export const useAuth = () => {
     const { redirectToMain, redirectToLogin } = useRouting();
 
     const onSuccessfulLogin = ({ access_token }) => {
-        localStorage.setItem("user_token", access_token);
+        localStorage.setItem("gAccessToken", access_token);
         checkUser();
         setIsLoading(false);
         redirectToMain();
@@ -24,7 +24,7 @@ export const useAuth = () => {
 
     const checkUser = async () => {
         setIsLoading(true);
-        const token = localStorage.getItem("user_token");
+        const token = localStorage.getItem("gAccessToken");
         if (!token) {
             setIsLoading(false);
             handleLogout();
@@ -43,6 +43,9 @@ export const useAuth = () => {
             id,
             email   
         })
+        const apiToken = await getAPIAccessToken(email);
+        if (apiToken !== null)
+            localStorage.setItem("apiAccessToken", apiToken);
         setIsLoading(false);
     };
 

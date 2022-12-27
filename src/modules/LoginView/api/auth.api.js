@@ -1,4 +1,4 @@
-import { googleAPI } from '../../../config';
+import { apiRoute, googleAPI } from '../../../config';
 import { log } from '../../../utils/logger';
 
 export const getUsersGoogleData = async usersToken => {
@@ -10,3 +10,15 @@ export const getUsersGoogleData = async usersToken => {
     log("Found user: " + userData.name);
     return userData
 };
+
+export const getAPIAccessToken = async username => {
+    try {
+        const response = await fetch(apiRoute+ "/auth/" + username);
+        if (response.status === 401) // UNAUTHENTICATED
+            return null;
+        const { token } = await response.json();
+        return token;
+    } catch (error) {
+        
+    }
+}

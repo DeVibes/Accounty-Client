@@ -12,8 +12,8 @@ export const useFetchBalance = () => {
     );
     let income = 0, outcomes = 0, balance = 0;
     if (!isLoading) {
-        income = data?.income;
-        outcomes = data?.outcomes;
+        income = data?.income || 0;
+        outcomes = data?.outcome || 0;
         balance = income - (outcomes * -1);
     }
     return { income, outcomes, balance, isLoading, isError };
