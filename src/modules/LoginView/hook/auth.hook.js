@@ -24,6 +24,9 @@ export const useAuth = () => {
 
     const checkUser = async () => {
         setIsLoading(true);
+        const apiToken = await getAPIAccessToken();
+        if (apiToken !== null)
+            localStorage.setItem("apiAccessToken", apiToken);
         const token = localStorage.getItem("gAccessToken");
         if (!token) {
             setIsLoading(false);
@@ -43,9 +46,6 @@ export const useAuth = () => {
             id,
             email   
         })
-        const apiToken = await getAPIAccessToken(email);
-        if (apiToken !== null)
-            localStorage.setItem("apiAccessToken", apiToken);
         setIsLoading(false);
     };
 

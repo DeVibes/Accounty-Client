@@ -11,9 +11,15 @@ export const getUsersGoogleData = async usersToken => {
     return userData
 };
 
-export const getAPIAccessToken = async username => {
+export const getAPIAccessToken = async () => {
     try {
-        const response = await fetch(apiRoute+ "/auth/" + username);
+        const requestOptions = {
+            method: "GET",
+            headers: { 
+                'Authorization': `Bearer ${localStorage.getItem("gAccessToken")}`
+            }
+        };
+        const response = await fetch(apiRoute+ "/auth", requestOptions);
         if (response.status === 401) // UNAUTHENTICATED
             return null;
         const { token } = await response.json();
