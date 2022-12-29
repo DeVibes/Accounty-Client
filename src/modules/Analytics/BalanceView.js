@@ -7,7 +7,7 @@ import { AnalyticsError } from './components/AnalyticsError';
 export const BalanceView = () => {
     const { income, outcomes, balance, isLoading, isError } = useFetchBalance();
     return (
-        <section className='flex flex-col h-1/3'>
+        <section className='flex flex-col h-2/5'>
         {isLoading ? 
             <AnalyticsLoader/> :
             isError ? 
@@ -17,9 +17,9 @@ export const BalanceView = () => {
                         <span className='font-bold text-lg text-slate-300 mb-2'>
                             My Balance
                         </span>
-                        <div className="bg-slate-800 h-5/6 rounded-xl flex flex-col justify-around gap-4">
-                            <span className='text-gray-200 text-5xl text-center'>{balance} ₪</span>
-                            <div className="w-full flex">
+                        <div className="bg-slate-800 h-5/6 rounded-xl flex flex-col">
+                            <span className='text-gray-200 text-4xl text-center py-6'>{balance} ₪</span>
+                            <div className="w-full flex mb-2">
                                 <div className="w-full text-center flex items-center border-r-2 border-slate-500 pl-7">
                                     <IncomeLabel size={30} className="text-white"/>
                                     <div className="pl-3">
