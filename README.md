@@ -3,15 +3,25 @@
 ## Link
 https://accounty-prod.netlify.app
 
-## About
-This app is a digital e-wallet that allows users to manage their financial transactions and view their account balance. It has the ability to add and remove transactions to keep track of income and expenses. Users can view a complete history of their transactions and see their monthly balance. Additionally, the app provides yearly summary of spending by month and a monthly summary of transactions categorized by type, such as food, transportation, and entertainment. To ensure the security of user accounts, the app allows users to log in using their Google account for secure authentication.
+## About :bulb:
+This app is a digital e-wallet that allows users to manage their financials, keep track of income and expenses.
 
-## Screenshots
+## Features :mag_right:
+* View account monthly balance
+* Add, edit and remove transactions
+* View a complete history of transactions and filter them by date
+* View a yearly summary of expenses total per month 
+* View a monthly summary of expenses per type such as food, transaportation etc..
+* User login using Google account secure authentication 
+
+## Screenshots :camera_flash:
 
 
-## Technologies
-Developed in React, React-Query, state management with Context-API,
-Styling with 
+## Technologies :computer:
+**Framework**: React <br/>
+**State management**: Context-API <br/>
+**Data Fetching**: React-Query <br/>
+**Styling**: TailwindCSS <br/>
 
 ## Prerequisites
 * Node js
