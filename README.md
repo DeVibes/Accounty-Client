@@ -1,7 +1,7 @@
-# Accounty [![Netlify Status](https://api.netlify.com/api/v1/badges/cfdbab04-38aa-49b1-92f2-cff1326f37dc/deploy-status)](https://app.netlify.com/sites/accounty-prod/deploys)
+# MoneyMate [![Netlify Status](https://api.netlify.com/api/v1/badges/cfdbab04-38aa-49b1-92f2-cff1326f37dc/deploy-status)](https://app.netlify.com/sites/moneymate/deploys)
 
 ## Link
-https://accounty-prod.netlify.app
+https://moneymate.netlify.app
 
 ## About :bulb:
 This app is a digital e-wallet that allows users to manage their financials, keep track of income and expenses.
