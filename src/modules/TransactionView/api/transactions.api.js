@@ -1,7 +1,8 @@
 import { apiRoute } from "../../../config";
+import { Session } from "../../../utils/session";
 
 export const fetchTransactionsRequest = async (filters, page) => {
-    const { fromDate, toDate } = filters;
+    const { fromDate, toDate, linkedAccountId } = filters;
     let queryString = `?page=${page}`;
     if (fromDate != null && toDate != null) {
         queryString += `&fromDate=${fromDate}&toDate=${toDate}`;
@@ -12,31 +13,32 @@ export const fetchTransactionsRequest = async (filters, page) => {
             'Authorization': `Bearer ${localStorage.getItem("apiAccessToken")}`
         }
     };
-    const response = await fetch(apiRoute+ "/transactions" + queryString, requestOptions);
+    const response = await fetch(`${apiRoute}/transactions/${linkedAccountId}/all${queryString}`, requestOptions);
     return await response.json();
 };
 
-export const postTransactionRequest = async transaction => {
+export const postTransactionRequest = async ({ newTransaction, linkedAccountId }) => {
     const requestOptions = {
         method: "POST",
         headers: { 
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem("apiAccessToken")}`
+            'Authorization': `Bearer ${Session.getData("apiAccessToken")}`
         },
-        body: JSON.stringify(transaction)
+        body: JSON.stringify(newTransaction)
     };
-    const response = await fetch(apiRoute+ "/transactions", requestOptions);
+    const response = await fetch(`${apiRoute}/transactions/${linkedAccountId}`, requestOptions);
 };
 
-export const patchTransactionRequest = async ({trId, seen})  => {
+export const patchTransactionRequest = async ({ linkedAccountId, transactionId, updated })  => {
     const requestOptions = {
         method: "PATCH",
         headers: { 
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem("apiAccessToken")}`
+            'Authorization': `Bearer ${Session.getData("apiAccessToken")}`
         },
+        body: JSON.stringify(updated)
     };
-    const response = await fetch(apiRoute+ `/transactions/${trId}?seen=${seen}`, requestOptions);
+    const response = await fetch(`${apiRoute}/transactions/${linkedAccountId}/${transactionId}`, requestOptions);
 };
 
 export const deleteTransactionRequest = async transactionId => {
@@ -44,8 +46,8 @@ export const deleteTransactionRequest = async transactionId => {
         method: "DELETE",
         headers: { 
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem("apiAccessToken")}`
+            'Authorization': `Bearer ${Session.getData("apiAccessToken")}`
         },
     };
-    const response = await fetch(apiRoute+ `/transactions/${transactionId}`, requestOptions);
+    const response = await fetch(`${apiRoute}/transactions/${transactionId}`, requestOptions);
 };

@@ -2,7 +2,8 @@ import { Category } from "../../../utils/categories";
 const { DateTime } = require("luxon");
 
 export const mapDataForRechartPie = data => 
-    data.map(({ categoryName: name, total: value }) => { 
+    data.map(({ category: name, total: value }) => { 
+        value = +value;
         return { name, value }
     });
 

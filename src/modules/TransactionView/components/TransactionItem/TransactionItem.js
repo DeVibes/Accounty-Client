@@ -22,7 +22,7 @@ export const TransactionItem = ({ data, isAbsoluteFirst }) => {
     }, [isSelected, isTransactionSeen])
     
     const handleClick = () => updateSelectedTransaction(data.id);
-    const Icon = CategoriesMap.get(data.category.name)?.icon ?? Category.Unknown.icon;
+    const Icon = CategoriesMap.get(data.category)?.icon ?? Category.Unknown.icon;
     const isBottomBorderShown = (!data.isFirst || isAbsoluteFirst) && !isSelected;
     const { patchTransaction, isLoading: isPatchLoading } 
         = usePatchTransaction();
@@ -60,7 +60,7 @@ export const TransactionItem = ({ data, isAbsoluteFirst }) => {
                 </SlideAnimationHOC>
                 <SlideAnimationHOC trigger={isSelected} elementWidth={isConfirmDelete ? 80 : 57} direction="left" className="flex">
                     <ExpendAnimationHOC trigger={isConfirmDelete} className={`flex`}>
-                        <TransactionRightData price={data.price} paymentName={data.paymentType.name}/>
+                        <TransactionRightData price={data.price} paymentName={data.paymentType}/>
                         <TransactionRightActions isConfirmDelete={isConfirmDelete}
                             handleClick={handleDeleteClick}
                             isLoading={isDeleteLoading}

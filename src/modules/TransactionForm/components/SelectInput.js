@@ -13,8 +13,8 @@ export const SelectInput = ({ name, register, options, label, isLoading }) => {
 				disabled={isLoading}
 			>
 				{isLoading && <option>Loading ...</option>}
-				{options.length > 0 && options.map((option, index) => (
-					<option key={index} value={option.id}>{option.name}</option>
+				{options?.length > 0 && options.map((option, index) => (
+					<option key={index} value={option}>{option}</option>
 				))}
 			</select>
 		</>

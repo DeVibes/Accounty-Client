@@ -25,7 +25,8 @@ const QueryKeys = {
     FETCH_CATEGOIRES: 'fetchCategories',
     FETCH_BALANCE: 'fetchBalance',
     FETCH_TOTAL_BY_CATEGORY: 'fetchTotalByCat',
-    FETCH_YEARLY_TOTAL_BY_MONTH: 'fetchYearlyTotalByMonth'
+    FETCH_YEARLY_TOTAL_BY_MONTH: 'fetchYearlyTotalByMonth',
+    FETCH_ACCOUNT_DATA: 'fetchAccountData' 
 };
 
 const QueryStatus = {

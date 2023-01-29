@@ -4,7 +4,7 @@ import { createContext, useState } from "react";
 const TransactionsFiltersCtx = createContext(null);
 
 export const TransactionsFilterProvider = ({ children }) => {
-    const [filters, setFilters] = useState({});
+    const [filters, setFilters] = useState(undefined);
     const setDateRange = (fromDate, toDate) => {
         setFilters({
             ...filters,

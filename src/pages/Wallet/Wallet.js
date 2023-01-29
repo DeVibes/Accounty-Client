@@ -7,17 +7,18 @@ import { BalanceView } from '../../modules/Analytics/BalanceView'
 import { getTimeFrame } from '../../modules/Analytics/services/analytics.service';
 
 export const Wallet = () => {
-	const { setDateRange } = useTransactionsFilters();
-	useEffect(() => {
-		const { fromDate, toDate } = getTimeFrame();
-		setDateRange(fromDate, toDate);
-	}, []);
+	// const { setDateRange } = useTransactionsFilters();
+	// const { fromDate, toDate } = getTimeFrame();
+	// setDateRange(fromDate, toDate);
+	// useEffect(() => {
+	// 	console.log("In Wallet's useEffect")
+	// }, []);
 	
 	return (
 		<PrivateRouteHOC>
 			<BalanceView/>
 			<ActionBar/>
-			<TransactionsView/>
+			<TransactionsView isMonthly={true}/>
 		</PrivateRouteHOC>
 	);
 };

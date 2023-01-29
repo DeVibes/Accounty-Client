@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { IncomeLabel, OutcomeLabel } from '../../utils/icons';
 import { useFetchBalance } from './hooks/fetchBalance.hook';
 import { AnalyticsLoader } from './components/AnalyticsLoader';

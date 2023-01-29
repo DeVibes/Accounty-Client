@@ -1,8 +1,9 @@
 import { FilterIcon } from "../../../utils/icons";
 import { useModalContext } from "../../Modal/context/modal.context";
+import { useModalStore } from "../../Modal/state/modalStore";
 
 export const TransactionsHeader = () => {
-    const { openFilterTransactions } = useModalContext();
+    const openFilterTransactions = useModalStore(state => state.openFilterTransactions)
     return (
         <div className='mb-3 flex justify-between items-end shrink-0'>
             <span className='text-slate-400 text-xl'>Transactions</span>

@@ -5,25 +5,31 @@ export const getUsersGoogleData = async usersToken => {
     const response = await fetch(`${googleAPI}access_token=${usersToken}`);
     if (response.status === 401) // UNAUTHENTICATED
         return null;
-    const userData = await response.json();
-    userData.picture = userData.picture.slice(0, -2);
+    const responseJson = await response.json();
+    const userData = {
+        email : responseJson.email,
+        name: responseJson.name,
+        picUrl: responseJson.picture.slice(0, -2),
+        userId: responseJson.id
+    }
     log("Found user: " + userData.name);
-    return userData
+    return userData;
 };
 
-export const getAPIAccessToken = async () => {
+export const getAPIAccessToken = async gToken => {
     try {
         const requestOptions = {
             method: "GET",
             headers: { 
-                'Authorization': `Bearer ${localStorage.getItem("gAccessToken")}`
+                'Authorization': `Bearer ${gToken}`
             }
         };
         const response = await fetch(apiRoute+ "/auth", requestOptions);
         if (response.status === 401) // UNAUTHENTICATED
             return null;
-        const { token } = await response.json();
-        return token;
+        const { token: apiToken, accounts } = await response.json();
+        const linkedAccountId = accounts[0];
+        return { apiToken, linkedAccountId };
     } catch (error) {
         
     }

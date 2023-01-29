@@ -7,14 +7,14 @@ import { TransactionsViewError } from './components/TransactionsViewError';
 import { SelectedTransactionProvider } from './context/selectedTransaction.context';
 import { useFetchTransactions } from './hooks/transactions.hook';
 
-export const TransactionsView = () => {
+export const TransactionsView = ({ isMonthly = false }) => {
     const { pagedTransactions, 
         isLoading, 
         isError, 
         hasNextPage, 
         fetchNextPage, 
         isFetchingNextPage 
-    } = useFetchTransactions();
+    } = useFetchTransactions(isMonthly);
     const paginationAPI = {
         hasNextPage, 
         fetchNextPage, 

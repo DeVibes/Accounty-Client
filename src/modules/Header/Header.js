@@ -2,13 +2,14 @@ import React from 'react';
 import { ProfilePic } from '../../shared/components/ProfilePic';
 import Spinner from '../../shared/components/Spinner';
 import { useUserDataContext } from '../../shared/context/user.context';
+import { useUserDataStore } from '../../shared/state/userDataStore';
 import { LeftArrow } from '../../utils/icons';
 import { useAuth } from '../LoginView/hook/auth.hook';
 import { useRouting } from '../Router/hooks/routing.hook';
 
 export const Header = () => {
   const { pageData, isBackBtnShown, isProfileShown, goBack } = useRouting();
-  const { userData } = useUserDataContext();
+  const picUrl = useUserDataStore(state => state.picUrl);
   const { isLoading } = useAuth();
   return (
     <header className='text-slate-300 w-full p-4 flex justify-between items-center'>
@@ -26,7 +27,7 @@ export const Header = () => {
         </span> : 
         <span className={`${isProfileShown ? "" : "invisible"}`}>
 
-          <ProfilePic size={45} picUrl={userData?.picUrl}/>
+          <ProfilePic size={45} picUrl={picUrl}/>
         </span>
       }
     </header>

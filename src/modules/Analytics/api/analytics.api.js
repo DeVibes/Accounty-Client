@@ -1,7 +1,7 @@
 import { apiRoute } from "../../../config";
 
-export const fetchMonthlyBalance = async (fromDateISOString, toDateISOString) => {
-    if (!fromDateISOString || !toDateISOString)
+export const fetchMonthlyBalance = async (fromDateISOString, toDateISOString, linkedAccountId) => {
+    if (!fromDateISOString || !toDateISOString || !linkedAccountId)
         return;
     const queryParams = `?fromDate=${fromDateISOString}&toDate=${toDateISOString}`
     const requestOptions = {
@@ -10,14 +10,14 @@ export const fetchMonthlyBalance = async (fromDateISOString, toDateISOString) =>
             'Authorization': `Bearer ${localStorage.getItem("apiAccessToken")}`
         }
     };
-    const response = await fetch(apiRoute + "/transactions/balance" + queryParams, requestOptions);
+    const response = await fetch(`${apiRoute}/transactions/${linkedAccountId}/balance${queryParams}`, requestOptions);
     if (response.status === 500)
         throw new Error("Server error");
     return await response.json();
 }
 
-export const getTotalByCategory = async (fromDateISOString, toDateISOString) => {
-    if (!fromDateISOString || !toDateISOString)
+export const getTotalByCategory = async (fromDateISOString, toDateISOString, linkedAccountId) => {
+    if (!fromDateISOString || !toDateISOString || !linkedAccountId)
         return;
     const queryParams = `?fromDate=${fromDateISOString}&toDate=${toDateISOString}`
     const requestOptions = {
@@ -26,14 +26,14 @@ export const getTotalByCategory = async (fromDateISOString, toDateISOString) => 
             'Authorization': `Bearer ${localStorage.getItem("apiAccessToken")}`
         }
     };
-    const response = await fetch(apiRoute + "/transactions/category" + queryParams, requestOptions);
+    const response = await fetch(`${apiRoute}/transactions/${linkedAccountId}/category${queryParams}`, requestOptions);
     if (response.status === 500)
         throw new Error("Server error");
     return await response.json();
 }
 
-export const getYearlyTotalByMonth = async (fromDateISOString, toDateISOString) => {
-    if (!fromDateISOString || !toDateISOString)
+export const getYearlyTotalByMonth = async (fromDateISOString, toDateISOString, linkedAccountId) => {
+    if (!fromDateISOString || !toDateISOString || !linkedAccountId)
         return;
     const requestOptions = {
         method: "GET",
@@ -42,7 +42,7 @@ export const getYearlyTotalByMonth = async (fromDateISOString, toDateISOString) 
         }
     };
     const queryParams = `?fromDate=${fromDateISOString}&toDate=${toDateISOString}`
-    const response = await fetch(apiRoute + "/transactions/yearly" + queryParams, requestOptions);
+    const response = await fetch(`${apiRoute}/transactions/${linkedAccountId}/yearly${queryParams}`, requestOptions);
     if (response.status === 500)
         throw new Error("Server error");
     return await response.json();
