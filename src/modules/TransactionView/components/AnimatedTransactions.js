@@ -1,40 +1,41 @@
 import React, { Fragment } from 'react'
-import { motion } from "framer-motion";
-import { TransactionItem } from './TransactionItem';
+import { motion } from 'framer-motion'
+import { TransactionItem } from './TransactionItem'
 
-export const AnimatedTransactions = ({ pagedTransactions }) => ( 
-    <motion.ul variants={list} initial="hidden" animate="visible">
-        {pagedTransactions.map((page, index) => 
-            <Fragment key={index}>
-                {page.transactions.map((tr, innerIndex) => (
-                    <motion.li variants={item} key={tr.id}>
-                        <TransactionItem data={tr}
-                            isAbsoluteFirst={innerIndex === page.transactions.length - 1}
-                        />
-                    </motion.li>
-                ))}
-            </Fragment>
-        )}
-    </motion.ul>
-);
+export const AnimatedTransactions = ({ pagedTransactions }) => (
+  <motion.ul variants={list} initial="hidden" animate="visible">
+    {pagedTransactions.map((page, index) => (
+      <Fragment key={index}>
+        {page.transactions.map((tr, innerIndex) => (
+          <motion.li variants={item} key={tr.id}>
+            <TransactionItem
+              data={tr}
+              isAbsoluteFirst={innerIndex === page.transactions.length - 1}
+            />
+          </motion.li>
+        ))}
+      </Fragment>
+    ))}
+  </motion.ul>
+)
 
 const list = {
-    visible: { 
-        opacity: 1,
-        transition: {
-            when: "beforeChildren",
-            staggerChildren: 0.1,
-        }
+  visible: {
+    opacity: 1,
+    transition: {
+      when: 'beforeChildren',
+      staggerChildren: 0.1,
     },
-    hidden: { 
-        opacity: 0,
-        transition: {
-            when: "afterChildren",
-        }
+  },
+  hidden: {
+    opacity: 0,
+    transition: {
+      when: 'afterChildren',
     },
-};
+  },
+}
 
 const item = {
-    visible: { opacity: 1 },
-    hidden: { opacity: 0 }
+  visible: { opacity: 1 },
+  hidden: { opacity: 0 },
 }

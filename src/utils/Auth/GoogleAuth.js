@@ -1,7 +1,6 @@
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleOAuthProvider } from '@react-oauth/google'
 import { gAuthClientId } from '../../config'
 
-export const GoogleAuth = ({ children }) => 
-    <GoogleOAuthProvider clientId={gAuthClientId}>
-        {children}
-    </GoogleOAuthProvider>
+export const GoogleAuth = ({ children }) => (
+  <GoogleOAuthProvider clientId={gAuthClientId}>{children}</GoogleOAuthProvider>
+)
