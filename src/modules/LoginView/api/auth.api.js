@@ -1,36 +1,36 @@
-import { apiRoute, googleAPI } from '../../../config'
-import { log } from '../../../utils/logger'
+import { googleApiClient, serverApiClient } from '../../../utils/API/ApiClient';
+import { log, logError } from '../../../utils/logger';
 
 export const getUsersGoogleData = async (usersToken) => {
-  const response = await fetch(`${googleAPI}access_token=${usersToken}`)
-  if (response.status === 401)
-    // UNAUTHENTICATED
-    return null
-  const responseJson = await response.json()
-  const userData = {
-    email: responseJson.email,
-    name: responseJson.name,
-    picUrl: responseJson.picture.slice(0, -2),
-    userId: responseJson.id,
-  }
-  log('Found user: ' + userData.name)
-  return userData
-}
-
-export const getAPIAccessToken = async (gToken) => {
-  try {
-    const requestOptions = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${gToken}`,
-      },
+    const onError = (msg) => {
+        throw new Error(msg);
+    };
+    try {
+        const url = `?access_token=${usersToken}`;
+        const data = await googleApiClient.get(url, onError);
+        const userData = {
+            email: data.email,
+            name: data.name,
+            picUrl: data.picture.slice(0, -2),
+            userId: data.id,
+        };
+        log('Found user: ' + userData.name);
+        return userData;
+    } catch (error) {
+        return null;
     }
-    const response = await fetch(apiRoute + '/auth', requestOptions)
-    if (response.status === 401)
-      // UNAUTHENTICATED
-      return null
-    const { token: apiToken, accounts } = await response.json()
-    const linkedAccountId = accounts[0]
-    return { apiToken, linkedAccountId }
-  } catch (error) {}
-}
+};
+
+export const getAPIAccessToken = async () => {
+    const onError = (msg) => {
+        throw new Error(msg);
+    };
+    try {
+        const url = `/auth`;
+        const data = await serverApiClient.get(url, onError);
+        const { token: apiToken, account: linkedAccountId, userRole } = data;
+        return { apiToken, linkedAccountId, userRole };
+    } catch (error) {
+        return null;
+    }
+};

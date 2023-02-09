@@ -1,72 +1,54 @@
-import { apiRoute } from '../../../config'
-import { Session } from '../../../utils/session'
+import { serverApiClient } from '../../../utils/API/ApiClient';
+import { log, logError } from '../../../utils/logger';
 
 export const fetchTransactionsRequest = async (filters, page) => {
-  const { fromDate, toDate, linkedAccountId } = filters
-  let queryString = `?page=${page}`
-  if (fromDate != null && toDate != null) {
-    queryString += `&fromDate=${fromDate}&toDate=${toDate}`
-  }
-  const requestOptions = {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${Session.getData('apiAccessToken')}`,
-    },
-  }
-  const response = await fetch(
-    `${apiRoute}/transactions/${linkedAccountId}/all${queryString}`,
-    requestOptions
-  )
-  return await response.json()
-}
+    const onError = (msg) => {
+        throw new Error(`Error getting transactions`);
+    };
+    const { fromDate, toDate, linkedAccountId } = filters;
+    let queryString = `?page=${page}`;
+    if (fromDate != null && toDate != null) {
+        queryString += `&fromDate=${fromDate}&toDate=${toDate}`;
+    }
+    const url = `/transactions/${linkedAccountId}/all${queryString}`;
+    const data = await serverApiClient.get(url, onError);
+    return data;
+};
 
 export const postTransactionRequest = async ({
-  newTransaction,
-  linkedAccountId,
+    newTransaction,
+    linkedAccountId,
 }) => {
-  const requestOptions = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${Session.getData('apiAccessToken')}`,
-    },
-    body: JSON.stringify(newTransaction),
-  }
-  const response = await fetch(
-    `${apiRoute}/transactions/${linkedAccountId}`,
-    requestOptions
-  )
-}
+    const onError = (msg) => {
+        throw new Error(`Error creating transaction`);
+    };
+    const url = `/transactions/${linkedAccountId}`;
+    const data = await serverApiClient.post(url, newTransaction, onError);
+    log(`Created transaction:`);
+    log(data);
+};
 
 export const patchTransactionRequest = async ({
-  linkedAccountId,
-  transactionId,
-  updated,
+    linkedAccountId,
+    transactionId,
+    updated,
 }) => {
-  const requestOptions = {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${Session.getData('apiAccessToken')}`,
-    },
-    body: JSON.stringify(updated),
-  }
-  const response = await fetch(
-    `${apiRoute}/transactions/${linkedAccountId}/${transactionId}`,
-    requestOptions
-  )
-}
+    const onError = (msg) => {
+        throw new Error(`Error updating transaction`);
+    };
+
+    const url = `/transactions/${linkedAccountId}/${transactionId}`;
+    const data = await serverApiClient.patch(url, updated, onError);
+    log(`Updated transaction:`);
+    log(data);
+};
 
 export const deleteTransactionRequest = async (transactionId) => {
-  const requestOptions = {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${Session.getData('apiAccessToken')}`,
-    },
-  }
-  const response = await fetch(
-    `${apiRoute}/transactions/${transactionId}`,
-    requestOptions
-  )
-}
+    const onError = (msg) => {
+        throw new Error(`Error deleting transaction`);
+    };
+    const url = `/transactions/${transactionId}`;
+    const data = await serverApiClient.delete(url, onError);
+    log(`deleted transaction:`);
+    log(data);
+};

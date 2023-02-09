@@ -1,18 +1,18 @@
-import React from 'react'
+import React from 'react';
 
-import './App.css'
-import DesktopViewRestrictor from './utils/DesktopViewRestrictor'
-import { Router } from './modules/Router'
-import AppProviders from './shared/components/AppProviders'
+import './App.css';
+import DesktopViewRestrictor from './utils/DesktopViewRestrictor';
+import { Router } from './modules/Router';
+import AppProviders from './shared/components/AppProviders';
 
 const App = () => {
-  return (
-    <AppProviders>
-      <DesktopViewRestrictor>
-        <Router />
-      </DesktopViewRestrictor>
-    </AppProviders>
-  )
-}
+    return (
+        <AppProviders>
+            <DesktopViewRestrictor>
+                <Router />
+            </DesktopViewRestrictor>
+        </AppProviders>
+    );
+};
 
-export default App
+export default App;

@@ -7,3 +7,7 @@ export const log = (msg) => {
 export const logArray = (array) => {
   if (env !== Environment.PROD) console.table(array)
 }
+
+export const logError = (msg) => {
+  if (env !== Environment.PROD) console.error(msg)
+}
