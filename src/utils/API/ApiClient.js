@@ -1,5 +1,6 @@
 import { apiRoute, googleAPI } from '../../config';
 import { logError } from '../logger';
+import { Session } from '../session';
 
 export class ApiClient {
     constructor(route, token) {
@@ -22,14 +23,8 @@ export class ApiClient {
         const response = await fetch(url, requestOptions);
         if (!response.ok) {
             if (response.status === 401) {
-                onError('Unauthorized');
-            }
-            //   if (response.status === 404) {
-            //       onError('Not found');
-            //   }
-            //   if (response.status === 405) {
-            //       onError('');
-            else onError('Unexpected error');
+                Session.resetData();
+            } else onError('Unexpected error');
         } else {
             const responseJson = await response.json();
             return responseJson;
@@ -47,6 +42,9 @@ export class ApiClient {
             body: JSON.stringify(body),
         };
         const response = await fetch(url, requestOptions);
+        if (response.status === 401) {
+            Session.resetData();
+        }
         if (!response.ok) {
             onError('Unexpected error');
         }
@@ -66,6 +64,9 @@ export class ApiClient {
         };
         const response = await fetch(url, requestOptions);
         if (!response.ok) {
+            if (response.status === 401) {
+                Session.resetData();
+            }
             if (response.status === 404) {
                 onError('Not found');
             } else onError('Unexpected error');
@@ -86,9 +87,14 @@ export class ApiClient {
         };
         const response = await fetch(url, requestOptions);
         if (!response.ok) {
+            if (response.status === 401) {
+                Session.resetData();
+            }
             if (response.status === 404) {
                 onError('Not found');
             } else onError('Unexpected error');
+        } else if (response.status === 204) {
+            return;
         } else {
             const responseJson = await response.json();
             return responseJson;

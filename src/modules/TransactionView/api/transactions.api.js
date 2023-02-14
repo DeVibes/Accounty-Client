@@ -48,7 +48,7 @@ export const deleteTransactionRequest = async (transactionId) => {
         throw new Error(`Error deleting transaction`);
     };
     const url = `/transactions/${transactionId}`;
-    const data = await serverApiClient.delete(url, onError);
+    await serverApiClient.delete(url, onError);
     log(`deleted transaction:`);
-    log(data);
+    log(transactionId);
 };
