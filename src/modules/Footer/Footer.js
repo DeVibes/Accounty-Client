@@ -20,7 +20,7 @@ export const Footer = () => {
                 icon={TransactionsIcon}
                 size={25}
             />
-            <FooterIcon path="/profile" icon={ProfileIcon} size={25} />
+            <FooterIcon path="/account" icon={ProfileIcon} size={25} />
         </footer>
     );
 };

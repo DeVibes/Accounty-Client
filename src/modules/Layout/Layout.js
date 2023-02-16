@@ -9,6 +9,7 @@ import { useModalStore } from '../Modal/state/modalStore';
 import { shallow } from 'zustand/shallow';
 import { useFeedbackStore } from '../../shared/state/feedbackStore';
 import { Feedback } from '../../shared/components/Feedback';
+import { PaymentTypeForm } from '../TransactionForm/PaymentTypeForm';
 
 export const Layout = () => {
     const { isOpen, modalContent, closeModal } = useModalStore(
@@ -35,6 +36,8 @@ export const Layout = () => {
                     <TransactionForm closePopup={closeModal} />
                 ) : modalContent === ModalContent.FILTER ? (
                     <FilterForm handleClose={closeModal} />
+                ) : modalContent === ModalContent.ADD_PAYMENT ? (
+                    <PaymentTypeForm handleClose={closeModal} />
                 ) : null}
             </Modal>
             <Header />

@@ -3,20 +3,20 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 //  import { ReactQueryDevtools } from 'react-query/devtools'
 
 const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-    }
-  }
+    defaultOptions: {
+        queries: {
+            refetchOnWindowFocus: false,
+        },
+    },
 });
 
 export const ReactQuery = ({ children }) => {
-  return (
-    <QueryClientProvider client={queryClient}>
-        {children}
-        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-    </QueryClientProvider>
-  );
+    return (
+        <QueryClientProvider client={queryClient}>
+            {children}
+            {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+        </QueryClientProvider>
+    );
 };
 
 const QueryKeys = {
@@ -26,15 +26,15 @@ const QueryKeys = {
     FETCH_BALANCE: 'fetchBalance',
     FETCH_TOTAL_BY_CATEGORY: 'fetchTotalByCat',
     FETCH_YEARLY_TOTAL_BY_MONTH: 'fetchYearlyTotalByMonth',
-    FETCH_ACCOUNT_DATA: 'fetchAccountData' 
+    FETCH_ACCOUNT_DATA: 'fetchAccountData',
 };
 
 const QueryStatus = {
-  LOADING: 'loading',
-  ERROR: 'error',
-  SUCCESS: 'success',
-  IDLE: 'idle'
-}
+    LOADING: 'loading',
+    ERROR: 'error',
+    SUCCESS: 'success',
+    IDLE: 'idle',
+};
 
 Object.freeze(QueryKeys);
 Object.freeze(QueryStatus);

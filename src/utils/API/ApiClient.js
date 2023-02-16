@@ -76,7 +76,7 @@ export class ApiClient {
         }
     }
 
-    async delete(path, onError) {
+    async delete(path, onError, body) {
         const url = `${this.apiRoute}${path}`;
         const requestOptions = {
             method: 'DELETE',
@@ -85,6 +85,9 @@ export class ApiClient {
                 Authorization: `Bearer ${this.token}`,
             },
         };
+        if (body != undefined) {
+            requestOptions.body = JSON.stringify(body);
+        }
         const response = await fetch(url, requestOptions);
         if (!response.ok) {
             if (response.status === 401) {
