@@ -11,7 +11,7 @@ export const CategoryChart = ({ totalSpent, categories, balance }) => {
         { name: 'left', value: balance, color: 'rgba(0,0,0,0)' },
     ];
     return (
-        <ResponsiveContainer height="100%" width="100%">
+        <ResponsiveContainer height="86%" width="100%">
             <PieChart>
                 <Pie
                     data={categories}

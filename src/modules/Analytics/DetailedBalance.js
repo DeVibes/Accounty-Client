@@ -18,14 +18,14 @@ export const DetailedBalance = () => {
             ) : categories?.length === 0 ? (
                 <AnalyticsNoData />
             ) : (
-                <>
+                <section>
                     <CategoryChart
                         totalSpent={outcomes}
                         categories={categories}
                         balance={balance}
                     />
                     <CategoriesArray categories={categories} />
-                </>
+                </section>
             )}
         </>
     );

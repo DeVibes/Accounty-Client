@@ -2,7 +2,7 @@ import React from 'react';
 
 export const CategoriesArray = ({ categories }) => {
     return (
-        <section className="flex flex-nowrap overflow-x-scroll gap-3 h-20 mt-2">
+        <section className="flex flex-nowrap overflow-x-scroll gap-3 mt-2">
             {categories?.length > 0 ? (
                 categories.map((category, index) => (
                     <span key={index} className="category-badge">

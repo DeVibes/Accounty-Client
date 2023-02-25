@@ -7,7 +7,7 @@ export const ActionBar = () => {
         (state) => state.openAddTransaction
     );
     return (
-        <section className="w-full py-2">
+        <section className="w-full">
             <button
                 className="w-full p-2 rounded-lg bg-slate-500 flex justify-center"
                 onClick={openAddTransaction}

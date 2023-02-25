@@ -25,7 +25,7 @@ export const TransactionsView = ({ isMonthly = false }) => {
     if (isError) return <TransactionsViewError />;
     return (
         <SelectedTransactionProvider>
-            <section className="container py-2 pr-0 overflow-hidden flex flex-col">
+            <section className="container pr-0 overflow-hidden flex flex-col">
                 {isWalletPage ? (
                     <RecentTransactionsHeader />
                 ) : (
