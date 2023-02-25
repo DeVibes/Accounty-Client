@@ -19,12 +19,12 @@ export class Category {
     static Car = new Category('Car', CarIcon, '#0088FE');
     static EatOut = new Category('EatOut', FoodIcon, '#fabd2f');
     static House = new Category('House', HouseIcon, '#9d00ff');
-    static BodySoul = new Category('Body & Soul', BodySoulIcon, '#d3869b');
+    static BodySoul = new Category('Body&Soul', BodySoulIcon, '#d3869b');
     static Grocery = new Category('Grocery', GroceryIcon, '#b8bb26');
     static Income = new Category('Income', IncomeIcon, '#0db5c7');
-    static Transport = new Category('Transaport', TransportIcon, '#BE8D3C');
+    static Transport = new Category('Transport', TransportIcon, '#BE8D3C');
     static Bill = new Category('Bill', BillIcon, '#ebdbb2');
-    static Present = new Category('Present', PresentIcon, '#83a598');
+    static Gift = new Category('Gift', PresentIcon, '#83a598');
     constructor(name, icon, color) {
         this.name = name;
         this.icon = icon;

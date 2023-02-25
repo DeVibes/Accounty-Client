@@ -13,7 +13,7 @@ export const fetchMonthlyBalance = async (
     const queryParams = `?fromDate=${fromDateISOString}&toDate=${toDateISOString}`;
     const url = `/transactions/${linkedAccountId}/balance${queryParams}`;
     const data = await serverApiClient.get(url, onError);
-    return data;
+    return JSON.parse(data);
 };
 
 export const getTotalByCategory = async (

@@ -2,6 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .category-badge {
+        @apply bg-gray-500 rounded-lg p-2 whitespace-nowrap flex justify-center items-center gap-2;
+    }
+    .Shopping {
+        @apply bg-shopping;
+    }
+    .Car {
+        @apply bg-car;
+    }
+    .EatOut {
+        @apply bg-eatout;
+    }
+    .House {
+        @apply bg-house;
+    }
+    .Body\&Soul {
+        @apply bg-bodysoul;
+    }
+    .Grocery {
+        @apply bg-grocery;
+    }
+    .Income {
+        @apply bg-income;
+    }
+    .Transport {
+        @apply bg-transport;
+    }
+    .Bill {
+        @apply bg-bill;
+    }
+    .Gift {
+        @apply bg-gift;
+    }
+}
+
 #root {
     margin: 0;
     background-color: #202230;

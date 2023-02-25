@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 import { QueryKeys } from '../../../utils/ReactQuery';
 import { fetchMonthlyBalance } from '../api/analytics.api';
-import { getTimeFrame } from '../services/analytics.service';
+import { getTimeFrame, mapDataForBalance } from '../services/analytics.service';
 import { useUserDataStore } from '../../../shared/state/userDataStore';
 import { useFeedbackStore } from '../../../shared/state/feedbackStore';
 
@@ -16,12 +16,14 @@ export const useFetchBalance = () => {
     );
     let income = 0,
         outcomes = 0,
-        balance = 0;
+        balance = 0,
+        categories = [];
     if (!isLoading) {
-        income = data?.income || 0;
-        outcomes = data?.outcome || 0;
-        balance = income - outcomes * -1;
+        income = data?.Income || 0;
+        outcomes = data?.Outcome || 0;
+        balance = income - outcomes;
+        categories = mapDataForBalance(data?.CategoriesDetails);
     }
     if (isError) openFeedback(error.message);
-    return { income, outcomes, balance, isLoading, isError };
+    return { outcomes, balance, categories, isLoading, isError };
 };
